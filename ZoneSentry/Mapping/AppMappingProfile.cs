@@ -8,6 +8,10 @@ public class AppMappingProfile : Profile
     public AppMappingProfile()
     {
         CreateMap<ApplicationUser, ApplicationUserDTO>();
+        
+        CreateMap<ResidentialComplexCreate, ResidentialComplex>();
+        CreateMap<HouseCreate, House>();
+        CreateMap<RealtyCreate, Realty>();
 
         CreateMap<ConstructionCompany, ConstructionCompanyDTO>().ForMember(
             c => c.ResidentialComplexes,

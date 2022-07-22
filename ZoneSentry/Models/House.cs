@@ -36,3 +36,16 @@ public class HouseDTO
     
     public List<int> Realties { get; set; }
 }
+
+
+public class HouseCreate
+{
+    public string Street { get; set; }
+    public int HouseNumber { get; set; }
+    // Строение
+    public int? Building { get; set; }
+    // Район
+    public string? District { get; set; }
+    // Корпус
+    public int? Housing { get; set; }
+}

@@ -32,3 +32,8 @@ public class RealtyDTO
 
     public int CurrentRentAgreement { get; set; }
 }
+
+public class RealtyCreate
+{
+    public int Number { get; set; }
+}

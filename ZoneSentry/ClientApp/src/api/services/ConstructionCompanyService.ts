@@ -2,8 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { ConstructionCompanyDTO } from '../models/ConstructionCompanyDTO';
+import type { HouseCreate } from '../models/HouseCreate';
 import type { HouseDTO } from '../models/HouseDTO';
+import type { RealtyCreate } from '../models/RealtyCreate';
 import type { RealtyDTO } from '../models/RealtyDTO';
+import type { ResidentialComplexCreate } from '../models/ResidentialComplexCreate';
 import type { ResidentialComplexDTO } from '../models/ResidentialComplexDTO';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -42,6 +45,60 @@ id: number,
 
     /**
      * @param id 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteApiConstructioncompanyComplexes(
+id: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/constructioncompany/complexes/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+
+    /**
+     * @param id 
+     * @param requestBody 
+     * @returns HouseDTO Success
+     * @throws ApiError
+     */
+    public static postApiConstructioncompanyComplexes(
+id: number,
+requestBody?: HouseCreate,
+): CancelablePromise<HouseDTO> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/constructioncompany/complexes/{id}',
+            path: {
+                'id': id,
+            },
+            body: requestBody,
+            mediaType: 'application/json-patch+json',
+        });
+    }
+
+    /**
+     * @param requestBody 
+     * @returns ResidentialComplexDTO Success
+     * @throws ApiError
+     */
+    public static postApiConstructioncompanyComplexes1(
+requestBody?: ResidentialComplexCreate,
+): CancelablePromise<ResidentialComplexDTO> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/constructioncompany/complexes',
+            body: requestBody,
+            mediaType: 'application/json-patch+json',
+        });
+    }
+
+    /**
+     * @param id 
      * @returns HouseDTO Success
      * @throws ApiError
      */
@@ -59,6 +116,44 @@ id: number,
 
     /**
      * @param id 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteApiConstructioncompanyHouses(
+id: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/constructioncompany/houses/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+
+    /**
+     * @param id 
+     * @param requestBody 
+     * @returns RealtyDTO Success
+     * @throws ApiError
+     */
+    public static postApiConstructioncompanyHouses(
+id: number,
+requestBody?: RealtyCreate,
+): CancelablePromise<RealtyDTO> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/constructioncompany/houses/{id}',
+            path: {
+                'id': id,
+            },
+            body: requestBody,
+            mediaType: 'application/json-patch+json',
+        });
+    }
+
+    /**
+     * @param id 
      * @returns RealtyDTO Success
      * @throws ApiError
      */
@@ -68,6 +163,23 @@ id: number,
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/constructioncompany/realities/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+
+    /**
+     * @param id 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteApiConstructioncompanyRealty(
+id: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/constructioncompany/realty/{id}',
             path: {
                 'id': id,
             },

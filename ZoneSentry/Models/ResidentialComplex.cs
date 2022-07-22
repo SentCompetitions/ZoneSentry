@@ -24,3 +24,9 @@ public class ResidentialComplexDTO
     
     public List<int> Houses { get; set; }
 }
+
+public class ResidentialComplexCreate
+{
+    public string Name { get; set; }
+    public string City { get; set; }
+}

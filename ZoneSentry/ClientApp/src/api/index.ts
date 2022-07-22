@@ -12,15 +12,18 @@ export { ApplicationUserType } from './models/ApplicationUserType';
 export type { ConstructionCompany } from './models/ConstructionCompany';
 export type { ConstructionCompanyDTO } from './models/ConstructionCompanyDTO';
 export type { House } from './models/House';
+export type { HouseCreate } from './models/HouseCreate';
 export type { HouseDTO } from './models/HouseDTO';
 export type { JwtData } from './models/JwtData';
 export type { LoginModel } from './models/LoginModel';
 export type { Realty } from './models/Realty';
+export type { RealtyCreate } from './models/RealtyCreate';
 export type { RealtyDTO } from './models/RealtyDTO';
 export type { RegisterModel } from './models/RegisterModel';
 export type { RentAgreement } from './models/RentAgreement';
 export type { RentPayment } from './models/RentPayment';
 export type { ResidentialComplex } from './models/ResidentialComplex';
+export type { ResidentialComplexCreate } from './models/ResidentialComplexCreate';
 export type { ResidentialComplexDTO } from './models/ResidentialComplexDTO';
 export type { Response } from './models/Response';
 
