@@ -61,32 +61,11 @@ id: number,
     }
 
     /**
-     * @param id 
-     * @param requestBody 
-     * @returns HouseDTO Success
-     * @throws ApiError
-     */
-    public static postApiConstructioncompanyComplexes(
-id: number,
-requestBody?: HouseCreate,
-): CancelablePromise<HouseDTO> {
-        return __request(OpenAPI, {
-            method: 'POST',
-            url: '/api/constructioncompany/complexes/{id}',
-            path: {
-                'id': id,
-            },
-            body: requestBody,
-            mediaType: 'application/json-patch+json',
-        });
-    }
-
-    /**
      * @param requestBody 
      * @returns ResidentialComplexDTO Success
      * @throws ApiError
      */
-    public static postApiConstructioncompanyComplexes1(
+    public static postApiConstructioncompanyComplexes(
 requestBody?: ResidentialComplexCreate,
 ): CancelablePromise<ResidentialComplexDTO> {
         return __request(OpenAPI, {
@@ -134,16 +113,16 @@ id: number,
     /**
      * @param id 
      * @param requestBody 
-     * @returns RealtyDTO Success
+     * @returns HouseDTO Success
      * @throws ApiError
      */
-    public static postApiConstructioncompanyHouses(
+    public static postApiConstructioncompanyComplexesHouses(
 id: number,
-requestBody?: RealtyCreate,
-): CancelablePromise<RealtyDTO> {
+requestBody?: HouseCreate,
+): CancelablePromise<HouseDTO> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/constructioncompany/houses/{id}',
+            url: '/api/constructioncompany/complexes/{id}/houses',
             path: {
                 'id': id,
             },
@@ -183,6 +162,27 @@ id: number,
             path: {
                 'id': id,
             },
+        });
+    }
+
+    /**
+     * @param id 
+     * @param requestBody 
+     * @returns RealtyDTO Success
+     * @throws ApiError
+     */
+    public static postApiConstructioncompanyHousesRealities(
+id: number,
+requestBody?: RealtyCreate,
+): CancelablePromise<RealtyDTO> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/constructioncompany/houses/{id}/realities',
+            path: {
+                'id': id,
+            },
+            body: requestBody,
+            mediaType: 'application/json-patch+json',
         });
     }
 

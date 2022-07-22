@@ -101,7 +101,7 @@ public class ConstructionCompanyController : ControllerBase
         return Ok();
     }
     
-    [HttpPost("complexes/{id}")]
+    [HttpPost("complexes/{id}/houses")]
     public async Task<ActionResult<HouseDTO>> CreateHouse(int id, HouseCreate create)
     {
         var complex = await GetComplexObject(id);
@@ -147,7 +147,7 @@ public class ConstructionCompanyController : ControllerBase
     }
     
         
-    [HttpPost("houses/{id}")]
+    [HttpPost("houses/{id}/realities")]
     public async Task<ActionResult<RealtyDTO>> CreateRealty(int id, RealtyCreate create)
     {
         var house = await GetHouseObject(id);
