@@ -43,5 +43,6 @@ public class AppMappingProfile : Profile
             );
 
         CreateMap<RentRequest, RentRequestDTO>();
+        CreateMap<PurchaseRequest, PurchaseRequestDTO>();
     }
 }

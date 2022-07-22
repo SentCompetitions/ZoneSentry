@@ -6,6 +6,7 @@ public class Realty
     
     public int Number { get; set; }
     public int? PaymentPerMonth { get; set; }
+    public int? SellCost { get; set; }
     
     public House House { get; set; }
     public int HouseId { get; set; }
@@ -17,6 +18,7 @@ public class Realty
     
     public List<RentAgreement> RentAgreements { get; set; }
     public List<RentRequest> RentRequests { get; set; } 
+    public List<PurchaseRequest> PurchaseRequests { get; set; } 
 
     public RentAgreement? CurrentRentAgreement => RentAgreements != null ? RentAgreements.FirstOrDefault(a => a.Date > DateTime.Now && a.ExpirationDate < DateTime.Now) : null;
 }
@@ -33,6 +35,7 @@ public class RealtyDTO
     
     public int Number { get; set; }
     public int? PaymentPerMonth { get; set; }
+    public int? SellCost { get; set; }
     
     public int HouseId { get; set; }
     
@@ -55,6 +58,7 @@ public class RealtyUserView
     
     public int Number { get; set; }
     public int? PaymentPerMonth { get; set; }
+    public int? SellCost { get; set; }
     
     public int HouseId { get; set; }
     

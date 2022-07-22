@@ -29,6 +29,7 @@ public class UserRealtiesOwnerController : ControllerBase
         return await _mapper.ProjectTo<RealtyUserView>(owned).ToListAsync();
     }
     
+    #region rentRequests
     [HttpGet("rentRequests")]
     public async Task<ActionResult<List<RentRequestDTO>>> GetRentRequests()
     {
@@ -61,4 +62,56 @@ public class UserRealtiesOwnerController : ControllerBase
 
         return Ok();
     }
+    #endregion rentRequests
+
+    #region purchaseRequest
+    [HttpPost("requestPurchase")]
+    public async Task<ActionResult> RequestPurchase(PurchaseRequestCreate create)
+    {
+        var realty = await _db.Realties.FirstOrDefaultAsync(r => r.Id == create.RealtyId && r.RealtyStatus == RealtyStatus.ForSale);
+        if (realty == null) return NotFound();
+        
+        var request = await _db.PurchaseRequests.FirstOrDefaultAsync(r => r.NewOwner == HttpContext.GetUser() && r.Realty == realty);
+        if (request != null) return BadRequest();
+
+        var newRequest = new PurchaseRequest()
+        {
+            Realty = realty,
+            NewOwner = HttpContext.GetUser(),
+            SellCost = realty.SellCost ?? 0
+        };
+
+        _db.PurchaseRequests.Add(newRequest);
+
+        await _db.SaveChangesAsync();
+        
+        return Ok();
+    }
+    
+    [HttpGet("rentPurchase")]
+    public async Task<ActionResult<List<PurchaseRequestDTO>>> GetPurchaseRequests()
+    {
+        var owned = _db.Realties.Where(r => r.Owner == HttpContext.GetUser());
+
+        return await _mapper.ProjectTo<PurchaseRequestDTO>(owned.SelectMany(r => r.PurchaseRequests)).ToListAsync();
+    }
+    
+    [HttpPost("rentPurchase/accept/{id}")]
+    public async Task<ActionResult> AcceptPurchaseRequest(int id)
+    {
+        var request = await _db.PurchaseRequests.Include(r => r.Realty.RentAgreements).Include(r => r.NewOwner).Include(r => r.Realty.Owner).FirstOrDefaultAsync(r => r.Id == id && r.Realty.Owner == HttpContext.GetUser());
+        if (request == null) return NotFound();
+        if (request.Realty.CurrentRentAgreement != null) return BadRequest("CurrentRentAgreement exists");
+
+        request.Realty.Owner = request.NewOwner;
+        request.Realty.OwnedByCompany = false;
+        request.Realty.RealtyStatus = RealtyStatus.NotForSale;
+        
+        _db.PurchaseRequests.Remove(request);
+
+        await _db.SaveChangesAsync();
+
+        return Ok();
+    }
+    #endregion purchaseRequest
 }

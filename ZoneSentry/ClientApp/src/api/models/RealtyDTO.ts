@@ -8,6 +8,7 @@ export type RealtyDTO = {
     id?: number;
     number?: number;
     paymentPerMonth?: number | null;
+    sellCost?: number | null;
     houseId?: number;
     owner?: ApplicationUserDTO;
     ownedByCompany?: boolean;

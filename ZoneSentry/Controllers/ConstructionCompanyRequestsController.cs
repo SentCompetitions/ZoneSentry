@@ -52,4 +52,30 @@ public class ConstructionCompanyRequestsController: ControllerBase
 
         return Ok();
     }
+    
+    [HttpGet("purchaseRequests")]
+    public async Task<ActionResult<List<PurchaseRequestDTO>>> GetPurchaseRequests()
+    {
+        var owned = _db.Realties.Where(r => r.OwnedByCompany && r.House.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()));
+
+        return await _mapper.ProjectTo<PurchaseRequestDTO>(owned.SelectMany(r => r.PurchaseRequests)).ToListAsync();
+    }
+    
+    [HttpPost("purchaseRequests/accept/{id}")]
+    public async Task<ActionResult> AcceptPurchaseRequest(int id)
+    {
+        var request = await _db.PurchaseRequests.Include(r => r.Realty.RentAgreements).Include(r => r.NewOwner).Include(r => r.Realty).FirstOrDefaultAsync(r => r.Id == id &&  r.Realty.OwnedByCompany && r.Realty.House.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()));
+        if (request == null) return NotFound();
+        if (request.Realty.CurrentRentAgreement != null) return BadRequest("CurrentRentAgreement exists");
+
+        request.Realty.Owner = request.NewOwner;
+        request.Realty.OwnedByCompany = false;
+        request.Realty.RealtyStatus = RealtyStatus.NotForSale;
+        
+        _db.PurchaseRequests.Remove(request);
+
+        await _db.SaveChangesAsync();
+
+        return Ok();
+    }
 }
