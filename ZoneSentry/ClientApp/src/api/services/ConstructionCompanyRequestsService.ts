@@ -1,34 +1,22 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { RealtyUserView } from '../models/RealtyUserView';
 import type { RentRequestDTO } from '../models/RentRequestDTO';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 
-export class UserRealtiesOwnerService {
-
-    /**
-     * @returns RealtyUserView Success
-     * @throws ApiError
-     */
-    public static getApiUserrealtiesowner(): CancelablePromise<Array<RealtyUserView>> {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/api/userrealtiesowner',
-        });
-    }
+export class ConstructionCompanyRequestsService {
 
     /**
      * @returns RentRequestDTO Success
      * @throws ApiError
      */
-    public static getApiUserrealtiesownerRentrequests(): CancelablePromise<Array<RentRequestDTO>> {
+    public static getApiConstructioncompanyrequestsRentrequests(): CancelablePromise<Array<RentRequestDTO>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/userrealtiesowner/rentrequests',
+            url: '/api/constructioncompanyrequests/rentrequests',
         });
     }
 
@@ -37,12 +25,12 @@ export class UserRealtiesOwnerService {
      * @returns any Success
      * @throws ApiError
      */
-    public static postApiUserrealtiesownerRentrequestsAccept(
+    public static postApiConstructioncompanyrequestsRentrequestsAccept(
 id: number,
 ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/userrealtiesowner/rentrequests/accept/{id}',
+            url: '/api/constructioncompanyrequests/rentrequests/accept/{id}',
             path: {
                 'id': id,
             },

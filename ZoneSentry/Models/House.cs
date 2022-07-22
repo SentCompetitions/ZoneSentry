@@ -49,3 +49,19 @@ public class HouseCreate
     // Корпус
     public int? Housing { get; set; }
 }
+
+public class HouseUserView
+{
+    public int Id { get; set; }
+    
+    public string Street { get; set; }
+    public int HouseNumber { get; set; }
+    // Строение
+    public int? Building { get; set; }
+    // Район
+    public string? District { get; set; }
+    // Корпус
+    public int? Housing { get; set; }
+    
+    public ResidentialComplexUserView ResidentialComplex { get; set; }
+}

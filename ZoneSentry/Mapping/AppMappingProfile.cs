@@ -12,6 +12,11 @@ public class AppMappingProfile : Profile
         CreateMap<ResidentialComplexCreate, ResidentialComplex>();
         CreateMap<HouseCreate, House>();
         CreateMap<RealtyCreate, Realty>();
+        
+        CreateMap<ConstructionCompany,ConstructionCompanyUserView>();
+        CreateMap<ResidentialComplex,ResidentialComplexUserView>();
+        CreateMap<House,HouseUserView>();
+        CreateMap<Realty,RealtyUserView>();
 
         CreateMap<ConstructionCompany, ConstructionCompanyDTO>().ForMember(
             c => c.ResidentialComplexes,
@@ -36,5 +41,7 @@ public class AppMappingProfile : Profile
                 r => r.CurrentRentAgreement,
                 o => o.MapFrom(r => r.CurrentRentAgreement.Id)
             );
+
+        CreateMap<RentRequest, RentRequestDTO>();
     }
 }

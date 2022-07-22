@@ -20,3 +20,11 @@ public class ConstructionCompanyDTO
     
     public List<int> ResidentialComplexes { get; set; }
 }
+
+public class ConstructionCompanyUserView
+{
+    public int Id { get; set; }
+    
+    public string Name { get; set; }
+    public string Country { get; set; }
+}
