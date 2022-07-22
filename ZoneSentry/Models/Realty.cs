@@ -14,7 +14,7 @@ public class Realty
     
     public List<RentAgreement> RentAgreements { get; set; }
 
-    public RentAgreement CurrentRentAgreement => RentAgreements.FirstOrDefault(a => a.Date > DateTime.Now && a.ExpirationDate < DateTime.Now);
+    public RentAgreement? CurrentRentAgreement => RentAgreements != null ? RentAgreements.FirstOrDefault(a => a.Date > DateTime.Now && a.ExpirationDate < DateTime.Now) : null;
 }
 
 public class RealtyDTO
@@ -30,7 +30,7 @@ public class RealtyDTO
     
     public List<int> RentAgreements { get; set; }
 
-    public int CurrentRentAgreement { get; set; }
+    public int? CurrentRentAgreement { get; set; }
 }
 
 public class RealtyCreate

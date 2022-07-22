@@ -155,6 +155,7 @@ public class ConstructionCompanyController : ControllerBase
         
         var realty = _mapper.Map<Realty>(create);
         realty.House = house;
+        realty.OwnedByCompany = true;
         _db.Realties.Add(realty);
         await _db.SaveChangesAsync();
         

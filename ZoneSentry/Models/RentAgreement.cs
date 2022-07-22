@@ -9,7 +9,8 @@ public class RentAgreement
     public int PaymentPerMonth { get; set; }
     
     public Realty Realty { get; set; }
-    public ApplicationUser Owner { get; set; }
+    public ApplicationUser? Owner { get; set; }
+    public bool OwnedByCompany { get; set; }
     public ApplicationUser Tenant { get; set; }
     
     public List<RentPayment> Payments { get; set; }

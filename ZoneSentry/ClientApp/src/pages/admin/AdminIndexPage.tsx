@@ -6,7 +6,7 @@ import {upVariants} from "../../animations";
 import {ConstructionCompanyDTO, ConstructionCompanyService} from "../../api";
 import ResidentialComplex from "../../components/admins/ResidentialComplex";
 import Company from "../../components/admins/Company";
-import CreateResidentialComplex from "../../components/admins/CreateResidentialComplex";
+import CreateResidentialComplex from "../../components/admins/create/CreateResidentialComplex";
 
 function AdminIndexPage() {
     const auth = useAuth()
