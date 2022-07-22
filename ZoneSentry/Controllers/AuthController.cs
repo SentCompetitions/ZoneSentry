@@ -54,19 +54,28 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<Response>> Register([FromBody] RegisterModel model)
     {
         var userExists = await _userManager.FindByNameAsync(model.Username);
-        if (userExists != null) ModelState.AddModelError("", "Username already taken");
+        if (userExists != null) ModelState.AddModelError("", "Username уже занят");
 
         userExists = await _userManager.FindByEmailAsync(model.Email);
-        if (userExists != null) ModelState.AddModelError("", "Email already taken");
+        if (userExists != null) ModelState.AddModelError("", "Email уже занят");
+
+        var splitFio = model.FIO.Split(' ');
+        if (splitFio.Length < 2) ModelState.AddModelError("", "ФИО не верный");
+        
+        if (model.Password != model.RePassword) ModelState.AddModelError("", "Пароли не совпадают");
 
         if (!ModelState.IsValid)
             return (ActionResult)_apiBehaviorOptions.Value.InvalidModelStateResponseFactory(ControllerContext);
 
         ApplicationUser user = new()
         {
+            FirstName = splitFio[0],
+            LastName = splitFio[1],
+            Patronymic = splitFio.Length >= 3 ? splitFio[2] : null,
             Email = model.Email,
             SecurityStamp = Guid.NewGuid().ToString(),
-            UserName = model.Username
+            UserName = model.Username,
+            Type = ApplicationUserType.User
         };
         var result = await _userManager.CreateAsync(user, model.Password);
         if (!result.Succeeded)

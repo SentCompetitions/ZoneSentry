@@ -5,6 +5,7 @@ using ZoneSentry.Data;
 using ZoneSentry.Mapping;
 using ZoneSentry.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -13,6 +14,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using ZoneSentry.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 AuthOptions.KEY = builder.Configuration["JWT:Key"];
@@ -91,6 +93,20 @@ builder.Services.Configure<IdentityOptions>(opts =>
     opts.Password.RequireDigit = true;
 });
 
+
+builder.Services.AddTransient<IAuthorizationHandler, UserTypeUserAuthorizationHandler>();
+builder.Services.AddTransient<IAuthorizationHandler, UserTypeCompanyEmployeeAuthorizationHandler>();
+builder.Services.AddTransient<IAuthorizationHandler, UserTypeServiceProviderAuthorizationHandler>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("User", policy =>
+        policy.Requirements.Add(new UserTypeUserRequirement()));
+    options.AddPolicy("CompanyEmployee", policy =>
+        policy.Requirements.Add(new UserTypeCompanyEmployeeRequirement()));
+    options.AddPolicy("ServiceProvider", policy =>
+        policy.Requirements.Add(new UserTypeServiceProviderRequirement()));
+});
 
 // Adding Authentication
 var authenticationBuilder = builder.Services.AddAuthentication(options =>

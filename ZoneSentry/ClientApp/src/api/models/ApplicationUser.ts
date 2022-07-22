@@ -2,7 +2,17 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { ApplicationUserType } from './ApplicationUserType';
+import type { ConstructionCompany } from './ConstructionCompany';
+import type { Realty } from './Realty';
+
 export type ApplicationUser = {
+    type: ApplicationUserType;
+    firstName?: string | null;
+    lastName?: string | null;
+    patronymic?: string | null;
+    ownedRealties?: Array<Realty> | null;
+    constructionCompany?: ConstructionCompany;
     id?: number;
     userName?: string | null;
     normalizedUserName?: string | null;

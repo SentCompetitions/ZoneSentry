@@ -28,7 +28,6 @@ function LoginPage(props: Props) {
         {state == State.Login && <LoginForm/>}
         {state == State.Register && <RegisterForm/>}
         <button type={"button"} onClick={changeState}>{state == State.Login ? "Register" : "Login"}</button>
-        <OAuth/>
     </motion.div>
 }
 

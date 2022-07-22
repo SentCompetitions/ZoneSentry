@@ -4,13 +4,19 @@ namespace ZoneSentry.Models;
 
 public class RegisterModel
 {
-    [Required(ErrorMessage = "User Name is required")]
+    [Required(ErrorMessage = "Требуеться ФИО")]
+    public string? FIO { get; set; }
+    
+    [Required(ErrorMessage = "Требуеться логин")]
     public string? Username { get; set; }
 
     [EmailAddress]
-    [Required(ErrorMessage = "Email is required")]
+    [Required(ErrorMessage = "Требуеться email")]
     public string? Email { get; set; }
 
-    [Required(ErrorMessage = "Password is required")]
+    [Required(ErrorMessage = "Требуеться пароль")]
     public string? Password { get; set; }
+    
+    [Required(ErrorMessage = "Требуеться подтверждение пароля")]
+    public string? RePassword { get; set; }
 }

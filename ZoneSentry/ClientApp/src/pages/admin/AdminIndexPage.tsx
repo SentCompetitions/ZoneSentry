@@ -1,15 +1,15 @@
-import {useAuth} from "../components/AuthProvider";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {upVariants} from "../animations";
 import { motion } from "framer-motion";
+import {useAuth} from "../../components/AuthProvider";
+import {upVariants} from "../../animations";
 
-function IndexPage() {
+function AdminIndexPage() {
     const auth = useAuth()
     
     return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
-        Hi {auth.user?.userName}
+        Hi {auth.user?.userName} admin
     </motion.div>
 }
 
-export default IndexPage;
+export default AdminIndexPage;
