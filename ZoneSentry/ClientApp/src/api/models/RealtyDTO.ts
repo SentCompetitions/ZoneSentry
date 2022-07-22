@@ -11,5 +11,5 @@ export type RealtyDTO = {
     owner?: ApplicationUserDTO;
     ownedByCompany?: boolean;
     rentAgreements?: Array<number> | null;
-    currentRentAgreement?: number;
+    currentRentAgreement?: number | null;
 };

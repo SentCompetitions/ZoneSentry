@@ -123,13 +123,13 @@ public class ConstructionCompanyController : ControllerBase
                 c.Id == id && c.House.ResidentialComplex.ConstructionCompany.Employees.Contains(HttpContext.GetUser()));
     }
     
-    [HttpGet("realities/{id}")]
+    [HttpGet("realties/{id}")]
     public async Task<ActionResult<RealtyDTO>> GetRealty(int id)
     {
         return _mapper.Map<RealtyDTO>(await GetRealtyObject(id));
     }
     
-    [HttpDelete("realty/{id}")]
+    [HttpDelete("realties/{id}")]
     public async Task<ActionResult> DeleteRealty(int id)
     {
         var realty = await GetRealtyObject(id);
@@ -147,7 +147,7 @@ public class ConstructionCompanyController : ControllerBase
     }
     
         
-    [HttpPost("houses/{id}/realities")]
+    [HttpPost("houses/{id}/realties")]
     public async Task<ActionResult<RealtyDTO>> CreateRealty(int id, RealtyCreate create)
     {
         var house = await GetHouseObject(id);

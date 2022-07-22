@@ -10,23 +10,22 @@ namespace ZoneSentry.Controllers;
 [Authorize("User")]
 [Route("api/[controller]")]
 [ApiController]
-public class UserRealitiesController : ControllerBase
+public class UserRealtiesOwnerController : ControllerBase
 {
     private readonly ApplicationDbContext _db;
     private readonly IMapper _mapper;
 
-    public UserRealitiesController(ApplicationDbContext db, IMapper mapper)
+    public UserRealtiesOwnerController(ApplicationDbContext db, IMapper mapper)
     {
         _db = db;
         _mapper = mapper;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<RealtyDTO>>> GetRealities()
+    public async Task<ActionResult<List<RealtyDTO>>> GetOwnedRealties()
     {
-        var rented = _db.Realties.Where(r => r.RentAgreements.FirstOrDefault(a => a.Date > DateTime.Now && a.ExpirationDate < DateTime.Now).Tenant == HttpContext.GetUser());
         var owned = _db.Realties.Where(r => r.Owner == HttpContext.GetUser());
 
-        return _mapper.Map<List<RealtyDTO>>(await owned.Concat(rented).ToListAsync());
+        return await _mapper.ProjectTo<RealtyDTO>(owned).ToListAsync();
     } 
 }

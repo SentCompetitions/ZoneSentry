@@ -29,3 +29,5 @@ export type { Response } from './models/Response';
 
 export { AuthService } from './services/AuthService';
 export { ConstructionCompanyService } from './services/ConstructionCompanyService';
+export { UserRealtiesOwnerService } from './services/UserRealtiesOwnerService';
+export { UserRealtiesRentedService } from './services/UserRealtiesRentedService';

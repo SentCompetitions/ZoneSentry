@@ -13,6 +13,7 @@ export type RentAgreement = {
     paymentPerMonth?: number;
     realty?: Realty;
     owner?: ApplicationUser;
+    ownedByCompany?: boolean;
     tenant?: ApplicationUser;
     payments?: Array<RentPayment> | null;
 };

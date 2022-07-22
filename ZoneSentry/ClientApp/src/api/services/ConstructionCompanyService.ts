@@ -136,12 +136,12 @@ requestBody?: HouseCreate,
      * @returns RealtyDTO Success
      * @throws ApiError
      */
-    public static getApiConstructioncompanyRealities(
+    public static getApiConstructioncompanyRealties(
 id: number,
 ): CancelablePromise<RealtyDTO> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/constructioncompany/realities/{id}',
+            url: '/api/constructioncompany/realties/{id}',
             path: {
                 'id': id,
             },
@@ -153,12 +153,12 @@ id: number,
      * @returns any Success
      * @throws ApiError
      */
-    public static deleteApiConstructioncompanyRealty(
+    public static deleteApiConstructioncompanyRealties(
 id: number,
 ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/api/constructioncompany/realty/{id}',
+            url: '/api/constructioncompany/realties/{id}',
             path: {
                 'id': id,
             },
@@ -171,13 +171,13 @@ id: number,
      * @returns RealtyDTO Success
      * @throws ApiError
      */
-    public static postApiConstructioncompanyHousesRealities(
+    public static postApiConstructioncompanyHousesRealties(
 id: number,
 requestBody?: RealtyCreate,
 ): CancelablePromise<RealtyDTO> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/constructioncompany/houses/{id}/realities',
+            url: '/api/constructioncompany/houses/{id}/realties',
             path: {
                 'id': id,
             },

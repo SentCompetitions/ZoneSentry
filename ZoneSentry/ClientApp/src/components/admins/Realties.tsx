@@ -9,7 +9,7 @@ function Realties(props: RealtiesProps) {
     const [realty, setRealty] = useState<RealtyDTO>();
 
     useEffect( () => {
-        ConstructionCompanyService.getApiConstructioncompanyRealities(props.id).then(d => setRealty(d));
+        ConstructionCompanyService.getApiConstructioncompanyRealties(props.id).then(d => setRealty(d));
     }, []);
 
     return <>
