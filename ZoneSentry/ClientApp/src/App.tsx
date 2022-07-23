@@ -14,6 +14,7 @@ import AdminLayout from "./pages/admin/AdminLayout";
 import AdminIndexPage from "./pages/admin/AdminIndexPage";
 
 import "./styles/global.scss"
+import RealtyDetailsPage from "./pages/user/RealtyDetailsPage";
 
 function App() {
     const location = useLocation();
@@ -33,6 +34,13 @@ function App() {
                             <TypeSwitch
                                 user={<UserIndexPage/>}
                                 constructionCompanyAdmin={<AdminIndexPage/>}
+                                serviceProvider={<></>}
+                                nonAuntificated={<Navigate to={'login'}/>}/>
+                        }/>
+                        <Route path={"realties/:realtyId"} element={
+                            <TypeSwitch
+                                user={<RealtyDetailsPage/>}
+                                constructionCompanyAdmin={<></>}
                                 serviceProvider={<></>}
                                 nonAuntificated={<Navigate to={'login'}/>}/>
                         }/>

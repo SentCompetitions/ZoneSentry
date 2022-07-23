@@ -35,3 +35,31 @@ export const upVariants: Variants = {
         }
     }
 }
+
+export const initialOpacity: Target = {
+    opacity: 0,
+}
+
+export const enterOpacity: Target = {
+    opacity: 1
+}
+
+export const exitOpacity: Target = {
+    opacity: 0
+}
+
+export const opacityVariants: Variants = {
+    "init": initialOpacity,
+    "show": {
+        ...enterOpacity, transition: {
+            duration: 0.7,
+            ...translition
+        }
+    },
+    "hide": {
+        ...exitOpacity, transition: {
+            duration: 0.3,
+            ...translition
+        }
+    }
+}
