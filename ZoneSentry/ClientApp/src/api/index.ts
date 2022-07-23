@@ -19,6 +19,7 @@ export type { HouseUserView } from './models/HouseUserView';
 export type { JwtData } from './models/JwtData';
 export type { LoginModel } from './models/LoginModel';
 export { PaymentState } from './models/PaymentState';
+export type { Point } from './models/Point';
 export type { PurchaseRequest } from './models/PurchaseRequest';
 export type { PurchaseRequestCreate } from './models/PurchaseRequestCreate';
 export type { PurchaseRequestDTO } from './models/PurchaseRequestDTO';
@@ -52,11 +53,13 @@ export type { ResidentialComplexDTO } from './models/ResidentialComplexDTO';
 export type { ResidentialComplexUserView } from './models/ResidentialComplexUserView';
 export type { Response } from './models/Response';
 export type { SearchFilters } from './models/SearchFilters';
+export type { StatsEntry } from './models/StatsEntry';
 
 export { AuthService } from './services/AuthService';
 export { ConstructionCompanyService } from './services/ConstructionCompanyService';
 export { ConstructionCompanyRequestsService } from './services/ConstructionCompanyRequestsService';
 export { ConstructionCompanyServicesPaymentService } from './services/ConstructionCompanyServicesPaymentService';
+export { ConstructionCompanyStatsService } from './services/ConstructionCompanyStatsService';
 export { ServiceProviderService } from './services/ServiceProviderService';
 export { UserRealtiesOwnerService } from './services/UserRealtiesOwnerService';
 export { UserRealtiesServicesOwnerService } from './services/UserRealtiesServicesOwnerService';
@@ -64,3 +67,4 @@ export { UserRealtiesServicesTenantService } from './services/UserRealtiesServic
 export { UserRealtiesTenantService } from './services/UserRealtiesTenantService';
 export { UserSerarchService } from './services/UserSerarchService';
 export { UserServicesPaymentService } from './services/UserServicesPaymentService';
+export { UserStatsService } from './services/UserStatsService';
