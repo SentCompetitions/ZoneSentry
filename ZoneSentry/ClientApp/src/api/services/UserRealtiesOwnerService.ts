@@ -3,6 +3,7 @@
 /* eslint-disable */
 import type { PurchaseRequestCreate } from '../models/PurchaseRequestCreate';
 import type { PurchaseRequestDTO } from '../models/PurchaseRequestDTO';
+import type { RealtyDetails } from '../models/RealtyDetails';
 import type { RealtyUserView } from '../models/RealtyUserView';
 import type { RentPaymentUserView } from '../models/RentPaymentUserView';
 import type { RentRequestDTO } from '../models/RentRequestDTO';
@@ -21,6 +22,23 @@ export class UserRealtiesOwnerService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/userrealtiesowner',
+        });
+    }
+
+    /**
+     * @param realtyId 
+     * @returns RealtyDetails Success
+     * @throws ApiError
+     */
+    public static getApiUserrealtiesowner1(
+realtyId: number,
+): CancelablePromise<RealtyDetails> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/userrealtiesowner/{realtyId}',
+            path: {
+                'realtyId': realtyId,
+            },
         });
     }
 
@@ -109,6 +127,23 @@ realtyId?: number,
             url: '/api/userrealtiesowner/rentpayments',
             query: {
                 'realtyId': realtyId,
+            },
+        });
+    }
+
+    /**
+     * @param id 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteApiUserrealtiesownerAgreements(
+id: number,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/userrealtiesowner/agreements/{id}',
+            path: {
+                'id': id,
             },
         });
     }

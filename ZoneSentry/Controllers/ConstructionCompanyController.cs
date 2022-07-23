@@ -129,6 +129,12 @@ public class ConstructionCompanyController : ControllerBase
         return _mapper.Map<RealtyDTO>(await GetRealtyObject(id));
     }
     
+    [HttpGet("realties/{id}/details")]
+    public async Task<ActionResult<RealtyDetails>> GetRealtyDetails(int id)
+    {
+        return _mapper.Map<RealtyDetails>(await GetRealtyObject(id));
+    }
+    
     [HttpDelete("realties/{id}")]
     public async Task<ActionResult> DeleteRealty(int id)
     {

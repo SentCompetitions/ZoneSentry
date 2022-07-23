@@ -5,6 +5,7 @@ import type { ConstructionCompanyDTO } from '../models/ConstructionCompanyDTO';
 import type { HouseCreate } from '../models/HouseCreate';
 import type { HouseDTO } from '../models/HouseDTO';
 import type { RealtyCreate } from '../models/RealtyCreate';
+import type { RealtyDetails } from '../models/RealtyDetails';
 import type { RealtyDTO } from '../models/RealtyDTO';
 import type { ResidentialComplexCreate } from '../models/ResidentialComplexCreate';
 import type { ResidentialComplexDTO } from '../models/ResidentialComplexDTO';
@@ -159,6 +160,23 @@ id: number,
         return __request(OpenAPI, {
             method: 'DELETE',
             url: '/api/constructioncompany/realties/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+
+    /**
+     * @param id 
+     * @returns RealtyDetails Success
+     * @throws ApiError
+     */
+    public static getApiConstructioncompanyRealtiesDetails(
+id: number,
+): CancelablePromise<RealtyDetails> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/constructioncompany/realties/{id}/details',
             path: {
                 'id': id,
             },

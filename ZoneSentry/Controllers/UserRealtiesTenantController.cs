@@ -22,11 +22,22 @@ public class UserRealtiesTenantController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<RealtyDetails>>> GetRentedRealties()
+    public async Task<ActionResult<List<RealtyUserView>>> GetRentedRealties()
     {
         var rented = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now).Tenant == HttpContext.GetUser());
 
-        return await _mapper.ProjectTo<RealtyDetails>(rented).ToListAsync();
+        return await _mapper.ProjectTo<RealtyUserView>(rented).ToListAsync();
+    }
+
+    [HttpGet("{realtyId}")]
+    public async Task<ActionResult<RealtyDetails>> GetRentedRealty(int realtyId)
+    {
+        var rented = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.Id == realtyId && r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now).Tenant == HttpContext.GetUser());
+
+        var realty = await _mapper.ProjectTo<RealtyDetails>(rented).ToListAsync();
+        if (realty.Count() == 0) return NotFound();
+        
+        return realty[0];
     }
 
     [HttpPost("requestRent")]

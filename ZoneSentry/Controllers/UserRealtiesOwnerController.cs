@@ -22,11 +22,22 @@ public class UserRealtiesOwnerController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<RealtyDetails>>> GetOwnedRealties()
+    public async Task<ActionResult<List<RealtyUserView>>> GetOwnedRealties()
     {
         var owned = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.Owner == HttpContext.GetUser());
 
-        return await _mapper.ProjectTo<RealtyDetails>(owned).ToListAsync();
+        return await _mapper.ProjectTo<RealtyUserView>(owned).ToListAsync();
+    }
+    
+    [HttpGet("{realtyId}")]
+    public async Task<ActionResult<RealtyDetails>> GetOwnedRealty(int realtyId)
+    {
+        var owned = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.Id == realtyId && r.Owner == HttpContext.GetUser());
+        
+        var realty = await _mapper.ProjectTo<RealtyDetails>(owned).ToListAsync();
+        if (realty.Count() == 0) return NotFound();
+
+        return realty[0];
     }
     
     #region rentRequests

@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { RealtyDetails } from '../models/RealtyDetails';
 import type { RealtyUserView } from '../models/RealtyUserView';
 import type { RentPaymentUserView } from '../models/RentPaymentUserView';
 import type { RentRequestCreate } from '../models/RentRequestCreate';
@@ -19,6 +20,23 @@ export class UserRealtiesTenantService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/api/userrealtiestenant',
+        });
+    }
+
+    /**
+     * @param realtyId 
+     * @returns RealtyDetails Success
+     * @throws ApiError
+     */
+    public static getApiUserrealtiestenant1(
+realtyId: number,
+): CancelablePromise<RealtyDetails> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/userrealtiestenant/{realtyId}',
+            path: {
+                'realtyId': realtyId,
+            },
         });
     }
 
