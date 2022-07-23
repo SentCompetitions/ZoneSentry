@@ -24,9 +24,9 @@ public class UserRealtiesTenantController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<RealtyUserView>>> GetRentedRealties()
     {
-        var owned = _db.Realties.Where(r => r.RentAgreements.FirstOrDefault(a => a.Date > DateTime.Now && a.ExpirationDate < DateTime.Now).Tenant == HttpContext.GetUser());
+        var rented = _db.Realties.Where(r => r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now).Tenant == HttpContext.GetUser());
 
-        return await _mapper.ProjectTo<RealtyUserView>(owned).ToListAsync();
+        return await _mapper.ProjectTo<RealtyUserView>(rented).ToListAsync();
     }
 
     [HttpPost("requestRent")]
@@ -48,6 +48,31 @@ public class UserRealtiesTenantController : ControllerBase
 
         _db.RentRequests.Add(newRequest);
 
+        await _db.SaveChangesAsync();
+        
+        return Ok();
+    }
+
+    [HttpGet("rentPayments")]
+    public async Task<ActionResult<List<RentPaymentUserView>>> GetRentPayments(int? realtyId)
+    {
+        var agreements = _db.RentAgreements.Where(a => a.Tenant == HttpContext.GetUser() && a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now);
+
+        if (realtyId != null) agreements = agreements.Where(a => a.Realty.Id == realtyId);
+
+        var payments = agreements.SelectMany(a => a.Payments).OrderBy(a => a.PaymentState).Include(p => p.RentAgreement.Realty);
+
+        return await _mapper.ProjectTo<RentPaymentUserView>(payments).ToListAsync();
+    }
+
+    [HttpPost("rentPayments/{paymentId}/pay")]
+    public async Task<ActionResult> PayForRent(int paymentId)
+    {
+        var payment = await _db.RentPayments.FirstOrDefaultAsync(r => r.Id == paymentId && r.RentAgreement.Tenant == HttpContext.GetUser());
+        if (payment == null) return NotFound();
+        
+        // Здесь долна быть проверта на то что деньги действительно пришли и тд, но мы на хакатоне
+        payment.PaymentState = PaymentState.Paid;
         await _db.SaveChangesAsync();
         
         return Ok();

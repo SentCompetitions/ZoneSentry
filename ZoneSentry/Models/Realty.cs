@@ -20,7 +20,7 @@ public class Realty
     public List<RentRequest> RentRequests { get; set; } 
     public List<PurchaseRequest> PurchaseRequests { get; set; } 
 
-    public RentAgreement? CurrentRentAgreement => RentAgreements != null ? RentAgreements.FirstOrDefault(a => a.Date > DateTime.Now && a.ExpirationDate < DateTime.Now) : null;
+    public RentAgreement? CurrentRentAgreement => RentAgreements != null ? RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now) : null;
 }
 
 public enum RealtyStatus {

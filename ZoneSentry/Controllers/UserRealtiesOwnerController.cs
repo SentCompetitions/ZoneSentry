@@ -114,4 +114,16 @@ public class UserRealtiesOwnerController : ControllerBase
         return Ok();
     }
     #endregion purchaseRequest
+    
+    [HttpGet("rentPayments")]
+    public async Task<ActionResult<List<RentPaymentUserView>>> GetRentPayments(int? realtyId)
+    {
+        var agreements = _db.RentAgreements.Where(a => a.Owner == HttpContext.GetUser() && a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now);
+
+        if (realtyId != null) agreements = agreements.Where(a => a.Realty.Id == realtyId);
+
+        var payments = agreements.SelectMany(a => a.Payments).OrderBy(a => a.PaymentState).Include(p => p.RentAgreement.Realty);
+
+        return await _mapper.ProjectTo<RentPaymentUserView>(payments).ToListAsync();
+    }
 }

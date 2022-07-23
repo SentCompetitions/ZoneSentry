@@ -3,14 +3,14 @@
 /* eslint-disable */
 
 import type { PaymentState } from './PaymentState';
-import type { RentAgreement } from './RentAgreement';
+import type { RentAgreementUserView } from './RentAgreementUserView';
 
-export type RentPayment = {
+export type RentPaymentUserView = {
     id?: number;
     payment?: number;
     paymentState?: PaymentState;
     dueDate?: string;
     periodStart?: string;
     periodEnd?: string;
-    rentAgreement?: RentAgreement;
+    rentAgreement?: RentAgreementUserView;
 };

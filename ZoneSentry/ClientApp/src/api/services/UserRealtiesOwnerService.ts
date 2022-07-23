@@ -4,6 +4,7 @@
 import type { PurchaseRequestCreate } from '../models/PurchaseRequestCreate';
 import type { PurchaseRequestDTO } from '../models/PurchaseRequestDTO';
 import type { RealtyUserView } from '../models/RealtyUserView';
+import type { RentPaymentUserView } from '../models/RentPaymentUserView';
 import type { RentRequestDTO } from '../models/RentRequestDTO';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -91,6 +92,23 @@ id: number,
             url: '/api/userrealtiesowner/rentpurchase/accept/{id}',
             path: {
                 'id': id,
+            },
+        });
+    }
+
+    /**
+     * @param realtyId 
+     * @returns RentPaymentUserView Success
+     * @throws ApiError
+     */
+    public static getApiUserrealtiesownerRentpayments(
+realtyId?: number,
+): CancelablePromise<Array<RentPaymentUserView>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/userrealtiesowner/rentpayments',
+            query: {
+                'realtyId': realtyId,
             },
         });
     }

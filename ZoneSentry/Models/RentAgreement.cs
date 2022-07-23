@@ -15,3 +15,17 @@ public class RentAgreement
     
     public List<RentPayment> Payments { get; set; }
 }
+
+public class RentAgreementUserView
+{
+    public int Id { get; set; }
+    
+    public DateTime Date { get; set; }
+    public DateTime ExpirationDate { get; set; }
+    public int PaymentPerMonth { get; set; }
+    
+    public RealtyUserView Realty { get; set; }
+    public ApplicationUserDTO? Owner { get; set; }
+    public bool OwnedByCompany { get; set; }
+    public ApplicationUserDTO Tenant { get; set; }
+}

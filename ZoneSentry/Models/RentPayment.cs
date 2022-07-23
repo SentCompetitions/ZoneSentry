@@ -13,3 +13,15 @@ public class RentPayment
     public RentAgreement RentAgreement { get; set; }
 }
 
+public class RentPaymentUserView
+{
+    public int Id { get; set; }
+    
+    public int Payment { get; set; }
+    public PaymentState PaymentState { get; set; }
+    public DateTime DueDate { get; set; }
+    public DateTime PeriodStart { get; set; }
+    public DateTime PeriodEnd { get; set; }
+    
+    public RentAgreementUserView RentAgreement { get; set; }
+}
