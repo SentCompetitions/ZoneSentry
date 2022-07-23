@@ -32,7 +32,10 @@ function House(props: HouseProps) {
 
     return <>
         {home && <div className="adminHouse listBox">
-            <Info>Улица: {home?.street}</Info>
+            <div className="listInfoBlock">
+                <Info>Улица: {home?.street}</Info>
+                <img src="defaultPictures/Turgenev.jpg" alt="*фото дома*"/>
+            </div>
             <div className="realtiesList">
                 {home?.realties?.slice(0, showAmount).map(r => <div key={r}><Realties id={r} onDelete={update}/></div>)}
                 {showAmount < realtiesCount && <button onClick={() => setShowAmount(increaseShowAmount(showAmount, realtiesCount))}>Показать больше</button>}

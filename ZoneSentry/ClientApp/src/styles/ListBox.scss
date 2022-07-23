@@ -1,4 +1,5 @@
 ﻿$plusBtn: 60px;
+$infoDiv: 128px;
 
 .listBox{
     border-radius: 16px;
@@ -10,13 +11,23 @@
     background: #E1F0FA;
 }
 
+.listInfoBlock{
+    display: grid;
+    grid-row-gap: 2px;
+    justify-items: center;
+    & img{
+        width: 120px;
+        height: 120px;
+    }
+}
+
 .adminCompany{
     margin: auto;
-    width: 80vw;
+    width: 86vw;
     background-color: #fff;
 
     display: grid;
-    grid-template-columns: 1fr 4fr $plusBtn;
+    grid-template-columns: $infoDiv 4fr $plusBtn;
 
     & .create{
         &>.createShow{
@@ -31,12 +42,12 @@
 
     & .adminResidentialComplex{
         display: grid;
-        grid-template-columns: 1fr 4fr $plusBtn $plusBtn;
+        grid-template-columns: $infoDiv 4fr $plusBtn $plusBtn;
         background-color: #bbb;
 
         & .adminHouse{
             display: grid;
-            grid-template-columns: 1fr 4fr $plusBtn $plusBtn;
+            grid-template-columns: $infoDiv 4fr $plusBtn $plusBtn;
             background-color: #888;
 
             & .adminRealties{

@@ -24,7 +24,11 @@ function ResidentialComplex(props: ResidentialComplexProps) {
 
     return <>
         <div className="adminResidentialComplex listBox">
-            <Info>Имя Комплекса: {complex?.name}</Info>
+            <div className="listInfoBlock">
+                <Info>Имя Комплекса: {complex?.name}</Info>
+                <img src="defaultPictures/Turgenev.jpg" alt="*фото комплекса*"/>
+            </div>
+
             <div className="housesList">
                 {complex?.houses?.map(c => <div key={c}><House id={c} onDelete={update}/></div>)}
             </div>
