@@ -15,6 +15,7 @@ export type Realty = {
     number?: number;
     paymentPerMonth?: number | null;
     sellCost?: number | null;
+    area?: number;
     house?: House;
     houseId?: number;
     owner?: ApplicationUser;

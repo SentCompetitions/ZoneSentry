@@ -51,6 +51,7 @@ export type { ResidentialComplexCreate } from './models/ResidentialComplexCreate
 export type { ResidentialComplexDTO } from './models/ResidentialComplexDTO';
 export type { ResidentialComplexUserView } from './models/ResidentialComplexUserView';
 export type { Response } from './models/Response';
+export type { SearchFilters } from './models/SearchFilters';
 
 export { AuthService } from './services/AuthService';
 export { ConstructionCompanyService } from './services/ConstructionCompanyService';
@@ -61,4 +62,5 @@ export { UserRealtiesOwnerService } from './services/UserRealtiesOwnerService';
 export { UserRealtiesServicesOwnerService } from './services/UserRealtiesServicesOwnerService';
 export { UserRealtiesServicesTenantService } from './services/UserRealtiesServicesTenantService';
 export { UserRealtiesTenantService } from './services/UserRealtiesTenantService';
+export { UserSerarchService } from './services/UserSerarchService';
 export { UserServicesPaymentService } from './services/UserServicesPaymentService';

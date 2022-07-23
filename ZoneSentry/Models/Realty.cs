@@ -7,6 +7,7 @@ public class Realty
     public int Number { get; set; }
     public int? PaymentPerMonth { get; set; }
     public int? SellCost { get; set; }
+    public int Area { get; set; }
     
     public House House { get; set; }
     public int HouseId { get; set; }
@@ -37,8 +38,11 @@ public class RealtyDTO
     public int Number { get; set; }
     public int? PaymentPerMonth { get; set; }
     public int? SellCost { get; set; }
+    public int Area { get; set; }
     
     public int HouseId { get; set; }
+    
+    public RealtyStatus RealtyStatus { get; set; }
     
     public ApplicationUserDTO? Owner { get; set; }
     public bool OwnedByCompany { get; set; }
@@ -51,6 +55,7 @@ public class RealtyDTO
 public class RealtyCreate
 {
     public int Number { get; set; }
+    public int Area { get; set; }
 }
 
 public class RealtyUserView
@@ -60,8 +65,11 @@ public class RealtyUserView
     public int Number { get; set; }
     public int? PaymentPerMonth { get; set; }
     public int? SellCost { get; set; }
+    public int Area { get; set; }
     
     public int HouseId { get; set; }
+    
+    public RealtyStatus RealtyStatus { get; set; }
     
     public ApplicationUserDTO? Owner { get; set; }
     public bool OwnedByCompany { get; set; }
@@ -76,6 +84,7 @@ public class RealtyDetails
     public int Number { get; set; }
     public int? PaymentPerMonth { get; set; }
     public int? SellCost { get; set; }
+    public int Area { get; set; }
     
     public int HouseId { get; set; }
     

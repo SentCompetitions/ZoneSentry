@@ -13,6 +13,8 @@ export type House = {
     building?: number | null;
     district?: string | null;
     housing?: number | null;
+    latitude?: number;
+    longitude?: number;
     residentialComplex?: ResidentialComplex;
     residentialComplexId?: number;
     realties?: Array<Realty> | null;

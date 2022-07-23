@@ -45,10 +45,12 @@ public class UserRealtiesOwnerController : ControllerBase
     {
         if (realtyId != update.Id) return BadRequest();
         
-        var realty = await _db.Realties.Include("RentAgreements.Tenant").FirstOrDefaultAsync(r => r.Id == realtyId && r.Owner == HttpContext.GetUser());
+        var realty = await _db.Realties.Include("RentAgreements.Tenant").Include(c => c.RentAgreements).FirstOrDefaultAsync(r => r.Id == realtyId && r.Owner == HttpContext.GetUser());
         if (realty == null) return NotFound();
+        
 
         _mapper.Map(update, realty);
+        if (realty.CurrentRentAgreement != null) realty.RealtyStatus = RealtyStatus.NotForSale;
         await _db.SaveChangesAsync(); 
         
         return Ok();

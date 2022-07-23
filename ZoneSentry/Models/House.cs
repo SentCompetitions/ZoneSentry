@@ -13,6 +13,9 @@ public class House
     // Корпус
     public int? Housing { get; set; }
     
+    public float Latitude { get; set; }
+    public float Longitude { get; set; }
+    
     public ResidentialComplex ResidentialComplex { get; set; }
     public int ResidentialComplexId { get; set; }
     
