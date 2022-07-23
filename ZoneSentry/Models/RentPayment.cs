@@ -6,6 +6,7 @@ public class RentPayment
     
     public int Payment { get; set; }
     public PaymentState PaymentState { get; set; }
+    public DateTime? PaymentDate { get; set; }
     public DateTime DueDate { get; set; }
     public DateTime PeriodStart { get; set; }
     public DateTime PeriodEnd { get; set; }
@@ -19,6 +20,7 @@ public class RentPaymentUserView
     
     public int Payment { get; set; }
     public PaymentState PaymentState { get; set; }
+    public DateTime? PaymentDate { get; set; }
     public DateTime DueDate { get; set; }
     public DateTime PeriodStart { get; set; }
     public DateTime PeriodEnd { get; set; }

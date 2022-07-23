@@ -11,6 +11,7 @@ export type RealtyServicePayment = {
     id?: number;
     payment?: number;
     paymentState?: PaymentState;
+    paymentDate?: string | null;
     dueDate?: string;
     periodStart?: string;
     periodEnd?: string;

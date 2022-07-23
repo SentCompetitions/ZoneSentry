@@ -73,4 +73,24 @@ public class UserStatsController : ControllerBase
             }
         };
     }
+
+    [HttpGet("score/{userId}")]
+    public async Task<ActionResult<float>> GetUserScore(int userId)
+    {
+        var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        if (user == null) return NotFound();
+        
+        var allUnProfitableRentPayments = _db.RentPayments.Where(p => p.RentAgreement.Tenant == user);
+        var allUnProfitableServicesPayments = _db.RealtyServicePayments.Where(p => p.Orderer == user);
+
+        var rentScore = allUnProfitableRentPayments.Count() != 0 
+            ? allUnProfitableRentPayments.Where(p => p.PaymentDate < p.PeriodEnd).Count() / (float)allUnProfitableRentPayments.Count() 
+            : 1f;
+        
+        var serviceScoreScore = allUnProfitableServicesPayments.Count() != 0 
+            ? allUnProfitableServicesPayments.Where(p => p.PaymentDate < p.PeriodEnd).Count() / (float)allUnProfitableServicesPayments.Count() 
+            : 1f;
+
+        return (rentScore + serviceScoreScore) / 2f;
+    }
 }

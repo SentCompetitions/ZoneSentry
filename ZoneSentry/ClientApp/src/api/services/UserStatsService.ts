@@ -26,4 +26,21 @@ realtyId?: number,
         });
     }
 
+    /**
+     * @param userId 
+     * @returns number Success
+     * @throws ApiError
+     */
+    public static getApiUserstatsScore(
+userId: number,
+): CancelablePromise<number> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/userstats/score/{userId}',
+            path: {
+                'userId': userId,
+            },
+        });
+    }
+
 }

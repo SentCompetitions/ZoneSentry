@@ -84,6 +84,7 @@ public class UserRealtiesTenantController : ControllerBase
         
         // Здесь долна быть проверка на то что деньги действительно пришли и тд, но мы на хакатоне
         payment.PaymentState = PaymentState.Paid;
+        payment.PaymentDate = DateTime.Today;
         await _db.SaveChangesAsync();
         
         return Ok();

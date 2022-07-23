@@ -6,6 +6,7 @@ public class RealtyServicePayment
     
     public int Payment { get; set; }
     public PaymentState PaymentState { get; set; }
+    public DateTime? PaymentDate { get; set; }
     public DateTime DueDate { get; set; }
     public DateTime PeriodStart { get; set; }
     public DateTime PeriodEnd { get; set; }
@@ -21,6 +22,7 @@ public class RealtyServicePaymentDTO
     
     public int Payment { get; set; }
     public PaymentState PaymentState { get; set; }
+    public DateTime? PaymentDate { get; set; }
     public DateTime DueDate { get; set; }
     public DateTime PeriodStart { get; set; }
     public DateTime PeriodEnd { get; set; }
