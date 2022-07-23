@@ -21,7 +21,7 @@ public class UserRealtiesTenantController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet]
+    [HttpGet("realties")]
     public async Task<ActionResult<List<RealtyUserView>>> GetRentedRealties()
     {
         var rented = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now).Tenant == HttpContext.GetUser());
@@ -29,7 +29,7 @@ public class UserRealtiesTenantController : ControllerBase
         return await _mapper.ProjectTo<RealtyUserView>(rented).ToListAsync();
     }
 
-    [HttpGet("{realtyId}")]
+    [HttpGet("realties/{realtyId}")]
     public async Task<ActionResult<RealtyDetails>> GetRentedRealty(int realtyId)
     {
         var rented = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.Id == realtyId && r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now).Tenant == HttpContext.GetUser());

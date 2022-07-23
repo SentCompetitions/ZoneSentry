@@ -8,6 +8,7 @@ public class Realty
     public int? PaymentPerMonth { get; set; }
     public int? SellCost { get; set; }
     public int Area { get; set; }
+    public string? PlanUrl { get; set; }
     
     public House House { get; set; }
     public int HouseId { get; set; }
@@ -39,6 +40,7 @@ public class RealtyDTO
     public int? PaymentPerMonth { get; set; }
     public int? SellCost { get; set; }
     public int Area { get; set; }
+    public string? PlanUrl { get; set; }
     
     public int HouseId { get; set; }
     
@@ -66,6 +68,7 @@ public class RealtyUserView
     public int? PaymentPerMonth { get; set; }
     public int? SellCost { get; set; }
     public int Area { get; set; }
+    public string? PlanUrl { get; set; }
     
     public int HouseId { get; set; }
     
@@ -85,6 +88,7 @@ public class RealtyDetails
     public int? PaymentPerMonth { get; set; }
     public int? SellCost { get; set; }
     public int Area { get; set; }
+    public string? PlanUrl { get; set; }
     
     public int HouseId { get; set; }
     

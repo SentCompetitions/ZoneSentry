@@ -11,6 +11,7 @@ export type RealtyDTO = {
     paymentPerMonth?: number | null;
     sellCost?: number | null;
     area?: number;
+    planUrl?: string | null;
     houseId?: number;
     realtyStatus?: RealtyStatus;
     owner?: ApplicationUserDTO;

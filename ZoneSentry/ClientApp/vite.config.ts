@@ -20,6 +20,7 @@ export default defineConfig(({command, mode}) => {
             proxy: {
                 '/api': {target: 'https://localhost:7177', secure: false},
                 '/swagger': {target: 'https://localhost:7177', secure: false},
+                '/Media': {target: 'https://localhost:7177', secure: false},
             }
         }
     }

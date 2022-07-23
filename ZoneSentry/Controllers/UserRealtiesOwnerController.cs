@@ -21,7 +21,7 @@ public class UserRealtiesOwnerController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet]
+    [HttpGet("realties")]
     public async Task<ActionResult<List<RealtyUserView>>> GetOwnedRealties()
     {
         var owned = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.Owner == HttpContext.GetUser());
@@ -29,7 +29,7 @@ public class UserRealtiesOwnerController : ControllerBase
         return await _mapper.ProjectTo<RealtyUserView>(owned).ToListAsync();
     }
     
-    [HttpGet("{realtyId}")]
+    [HttpGet("realties/{realtyId}")]
     public async Task<ActionResult<RealtyDetails>> GetOwnedRealty(int realtyId)
     {
         var owned = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.Id == realtyId && r.Owner == HttpContext.GetUser());
@@ -40,7 +40,7 @@ public class UserRealtiesOwnerController : ControllerBase
         return realty[0];
     }
 
-    [HttpPut("{realtyId}")]
+    [HttpPut("realties/{realtyId}")]
     public async Task<ActionResult> UpdateOwnedRealty(int realtyId, RealtyUpdate update)
     {
         if (realtyId != update.Id) return BadRequest();

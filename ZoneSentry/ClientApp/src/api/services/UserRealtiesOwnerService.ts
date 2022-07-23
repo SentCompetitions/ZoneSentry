@@ -19,10 +19,10 @@ export class UserRealtiesOwnerService {
      * @returns RealtyUserView Success
      * @throws ApiError
      */
-    public static getApiUserrealtiesowner(): CancelablePromise<Array<RealtyUserView>> {
+    public static getApiUserrealtiesownerRealties(): CancelablePromise<Array<RealtyUserView>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/userrealtiesowner',
+            url: '/api/userrealtiesowner/realties',
         });
     }
 
@@ -31,12 +31,12 @@ export class UserRealtiesOwnerService {
      * @returns RealtyDetails Success
      * @throws ApiError
      */
-    public static getApiUserrealtiesowner1(
+    public static getApiUserrealtiesownerRealties1(
 realtyId: number,
 ): CancelablePromise<RealtyDetails> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/userrealtiesowner/{realtyId}',
+            url: '/api/userrealtiesowner/realties/{realtyId}',
             path: {
                 'realtyId': realtyId,
             },
@@ -49,13 +49,13 @@ realtyId: number,
      * @returns any Success
      * @throws ApiError
      */
-    public static putApiUserrealtiesowner(
+    public static putApiUserrealtiesownerRealties(
 realtyId: number,
 requestBody?: RealtyUpdate,
 ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/api/userrealtiesowner/{realtyId}',
+            url: '/api/userrealtiesowner/realties/{realtyId}',
             path: {
                 'realtyId': realtyId,
             },

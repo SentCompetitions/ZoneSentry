@@ -13,6 +13,7 @@ export type RealtyDetails = {
     paymentPerMonth?: number | null;
     sellCost?: number | null;
     area?: number;
+    planUrl?: string | null;
     houseId?: number;
     owner?: ApplicationUserDTO;
     ownedByCompany?: boolean;
