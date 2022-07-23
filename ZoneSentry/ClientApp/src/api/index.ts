@@ -33,6 +33,7 @@ export type { RealtyServiceOrderDTO } from './models/RealtyServiceOrderDTO';
 export type { RealtyServicePayment } from './models/RealtyServicePayment';
 export type { RealtyServicePaymentDTO } from './models/RealtyServicePaymentDTO';
 export type { RealtyServiceRequestDTO } from './models/RealtyServiceRequestDTO';
+export type { RealtyServiceUpdate } from './models/RealtyServiceUpdate';
 export { RealtyStatus } from './models/RealtyStatus';
 export type { RealtyUpdate } from './models/RealtyUpdate';
 export type { RealtyUserView } from './models/RealtyUserView';

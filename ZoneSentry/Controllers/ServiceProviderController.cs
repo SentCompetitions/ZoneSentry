@@ -21,7 +21,27 @@ public class ServiceProviderController: ControllerBase
         _db = db;
         _mapper = mapper;
     }
+
+    [HttpGet("services")]
+    public async Task<ActionResult<List<RealtyServiceDTO>>> GetServices()
+    {
+        return await _mapper.ProjectTo<RealtyServiceDTO>(_db.RealtyServices.Where(s => s.Provider == HttpContext.GetUser())).ToListAsync();
+    }
     
+    [HttpPut("services/{id}")]
+    public async Task<ActionResult> UpdateService(int id, RealtyServiceUpdate update)
+    {
+        if (id != update.Id) return BadRequest();
+
+        var service = await _db.RealtyServices.FirstOrDefaultAsync(s => s.Id == id && s.Provider == HttpContext.GetUser());
+        if (service == null) return NotFound();
+
+        _mapper.Map(update, service);
+        await _db.SaveChangesAsync();
+
+        return Ok();
+    }
+
     [HttpGet("requests")]
     public async Task<ActionResult<List<RealtyServiceRequestDTO>>> GetReqeusts()
     {

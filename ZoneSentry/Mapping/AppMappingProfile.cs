@@ -26,6 +26,7 @@ public class AppMappingProfile : Profile
         CreateMap<RentAgreement,RentAgreementDTO>();
         
         CreateMap<RealtyUpdate,Realty>();
+        CreateMap<RealtyServiceUpdate,RealtyService>();
         
         CreateMap<Realty,RealtyDetails>().ForMember(
             c => c.CurrentRentAgreement,

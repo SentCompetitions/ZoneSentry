@@ -19,3 +19,10 @@ public class RealtyServiceDTO
     
     public ApplicationUserDTO Provider { get; set; }
 }
+
+public class RealtyServiceUpdate
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int Cost { get; set; }
+}
