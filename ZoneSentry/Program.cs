@@ -15,6 +15,7 @@ using Newtonsoft.Json.Serialization;
 using Serilog;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using ZoneSentry.Auth;
+using ZoneSentry.Payment;
 
 var builder = WebApplication.CreateBuilder(args);
 AuthOptions.KEY = builder.Configuration["JWT:Key"];
@@ -171,6 +172,8 @@ authenticationBuilder.AddJwtBearer(options =>
         }
     };
 });
+
+builder.Services.AddHostedService<PaymentTimerService>();
 
 // Google OAuth example
 // authenticationBuilder.AddOAuth<GoogleOptions, ReplacedGoogleHandler>(GoogleDefaults.AuthenticationScheme, GoogleDefaults.DisplayName, googleOptions =>
