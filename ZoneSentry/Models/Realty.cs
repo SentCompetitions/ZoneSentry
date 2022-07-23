@@ -68,3 +68,21 @@ public class RealtyUserView
     
     public HouseUserView House { get; set; }
 }
+
+public class RealtyDetails
+{
+    public int Id { get; set; }
+    
+    public int Number { get; set; }
+    public int? PaymentPerMonth { get; set; }
+    public int? SellCost { get; set; }
+    
+    public int HouseId { get; set; }
+    
+    public ApplicationUserDTO? Owner { get; set; }
+    public bool OwnedByCompany { get; set; }
+    
+    public HouseUserView House { get; set; }
+
+    public RentAgreementDTO? CurrentRentAgreement;
+}

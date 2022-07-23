@@ -22,11 +22,11 @@ public class UserRealtiesOwnerController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<RealtyUserView>>> GetOwnedRealties()
+    public async Task<ActionResult<List<RealtyDetails>>> GetOwnedRealties()
     {
-        var owned = _db.Realties.Where(r => r.Owner == HttpContext.GetUser());
+        var owned = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.Owner == HttpContext.GetUser());
 
-        return await _mapper.ProjectTo<RealtyUserView>(owned).ToListAsync();
+        return await _mapper.ProjectTo<RealtyDetails>(owned).ToListAsync();
     }
     
     #region rentRequests
@@ -125,5 +125,19 @@ public class UserRealtiesOwnerController : ControllerBase
         var payments = agreements.SelectMany(a => a.Payments).OrderBy(a => a.PaymentState).Include(p => p.RentAgreement.Realty);
 
         return await _mapper.ProjectTo<RentPaymentUserView>(payments).ToListAsync();
+    }
+
+    [HttpDelete("agreements/{id}")]
+    public async Task<ActionResult> BreakAgreementDueUnPaid(int id)
+    {
+        var agreement = await _db.RentAgreements.Include(a => a.Payments).FirstOrDefaultAsync(a => a.Id == id && a.Owner == HttpContext.GetUser());
+        if (agreement == null) return NotFound();
+
+        if (agreement.Payments.Where(p => p.DueDate <= DateTime.Today).Count() == 0) return BadRequest();
+        
+        agreement.ExpirationDate = DateTime.Today;
+        await _db.SaveChangesAsync();
+
+        return Ok();
     }
 }

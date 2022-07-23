@@ -22,11 +22,11 @@ public class UserRealtiesTenantController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<RealtyUserView>>> GetRentedRealties()
+    public async Task<ActionResult<List<RealtyDetails>>> GetRentedRealties()
     {
-        var rented = _db.Realties.Where(r => r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now).Tenant == HttpContext.GetUser());
+        var rented = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now).Tenant == HttpContext.GetUser());
 
-        return await _mapper.ProjectTo<RealtyUserView>(rented).ToListAsync();
+        return await _mapper.ProjectTo<RealtyDetails>(rented).ToListAsync();
     }
 
     [HttpPost("requestRent")]

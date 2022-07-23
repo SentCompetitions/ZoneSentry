@@ -29,3 +29,15 @@ public class RentAgreementUserView
     public bool OwnedByCompany { get; set; }
     public ApplicationUserDTO Tenant { get; set; }
 }
+
+public class RentAgreementDTO
+{
+    public int Id { get; set; }
+    
+    public DateTime Date { get; set; }
+    public DateTime ExpirationDate { get; set; }
+    public int PaymentPerMonth { get; set; }
+    
+    public bool OwnedByCompany { get; set; }
+    public ApplicationUserDTO Tenant { get; set; }
+}
