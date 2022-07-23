@@ -1,10 +1,12 @@
 ﻿import {useState} from "react";
 import {ConstructionCompanyService, RealtyCreate} from "../../../api";
 import {ObjectControlForm} from "react-object-control";
+import Alert from "../../other/Alert";
 
 export interface CreateRealtyProps {
     houseId: number
     onCreate: () => void
+    onCancel: () => void
 }
 
 function CreateRealty(props: CreateRealtyProps) {
@@ -12,10 +14,13 @@ function CreateRealty(props: CreateRealtyProps) {
         number: 0
     })
     const onSumbit = () => {
-        ConstructionCompanyService.postApiConstructioncompanyHousesRealties(props.houseId, create).then(props.onCreate)
+        ConstructionCompanyService.postApiConstructioncompanyHousesRealties(props.houseId, create).then(props.onCreate).then(props.onCancel)
     }
     
-    return <ObjectControlForm onSubmit={onSumbit} onChange={setCreate} value={create} submitText="Подтвердить" config={{number: {label:"номер"}}}></ObjectControlForm>
+    return <Alert>
+        <ObjectControlForm onSubmit={onSumbit} onChange={setCreate} value={create} submitText="Подтвердить" config={{number: {label:"номер"}}}></ObjectControlForm>
+        <button onClick={() => props.onCancel()}>Закрыть</button>
+    </Alert>
 }
 
 export default CreateRealty;

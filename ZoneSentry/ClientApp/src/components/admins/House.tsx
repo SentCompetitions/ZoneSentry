@@ -21,6 +21,9 @@ function House(props: HouseProps) {
     const update = () =>{
         ConstructionCompanyService.getApiConstructioncompanyHouses(props.id).then(d => setHome(d));
     }
+    const cancelCreate = () => {
+        setShowCreate(!showCreate)
+    }
 
     useEffect( () => {
         update()
@@ -40,11 +43,8 @@ function House(props: HouseProps) {
                 {home?.realties?.slice(0, showAmount).map(r => <div key={r}><Realties id={r} onDelete={update}/></div>)}
                 {showAmount < realtiesCount && <button onClick={() => setShowAmount(increaseShowAmount(showAmount, realtiesCount))}>Показать больше</button>}
             </div>
-            {!showCreate && <button onClick={() => setShowCreate(!showCreate)}>Добавить помещение</button>}
-            {showCreate && <div className="creating">
-                <CreateRealty houseId={props.id} onCreate={update}/>
-                <button className="createCancel" onClick={() => setShowCreate(!showCreate)}>Отмена</button>
-            </div>}
+            <button onClick={() => setShowCreate(!showCreate)}>Добавить помещение</button>
+            {showCreate && <CreateRealty houseId={props.id} onCreate={update} onCancel={cancelCreate}/>}
             <DeleteHouse id={props.id} onDelete={props.onDelete}/>
         </div>}
     </>

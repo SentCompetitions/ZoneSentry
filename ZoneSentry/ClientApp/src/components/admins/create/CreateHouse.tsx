@@ -18,7 +18,7 @@ function CreateHouse(props: CreateHouseProps) {
         housing: 0
     })
     const onSumbit = () => {
-        ConstructionCompanyService.postApiConstructioncompanyComplexesHouses(props.complexId, create).then(props.onCreate)
+        ConstructionCompanyService.postApiConstructioncompanyComplexesHouses(props.complexId, create).then(props.onCreate).then(props.onCancel)
     }
     
     return <Alert>
