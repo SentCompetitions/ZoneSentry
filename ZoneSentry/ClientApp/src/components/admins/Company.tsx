@@ -21,7 +21,7 @@ function Company(props: CompanyProps) {
         <button onClick={() => setShowCreate(!showCreate)}> {showCreate ? "Отмена" : "Добавить ЖК"}</button>
         {showCreate && <CreateResidentialComplex onCreate={update}/>}
         Имя Компании: {company?.name}<br/>
-        Комплексы: {company?.residentialComplexes?.map(c => <div key={c}>id:{c}) <ResidentialComplex id={c}/></div>)}
+        Комплексы: {company?.residentialComplexes?.map(c => <div key={c}>id:{c}) <ResidentialComplex id={c} onDelete={update}/></div>)}
     </>
 }
 

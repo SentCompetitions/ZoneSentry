@@ -2,9 +2,11 @@
 import {ConstructionCompanyService, ResidentialComplexDTO} from "../../api";
 import House from "./House";
 import CreateHouse from "./create/CreateHouse";
+import DeleteResidentialComplex from "./delete/DeleteResidentialComplex";
 
 export interface ResidentialComplexProps {
     id: number
+    onDelete: () => void
 }
 
 function ResidentialComplex(props: ResidentialComplexProps) {
@@ -23,7 +25,8 @@ function ResidentialComplex(props: ResidentialComplexProps) {
         <button onClick={() => setShowCreate(!showCreate)}> {showCreate ? "Отмена" : "Добавить дом"} </button>
         {showCreate && <CreateHouse complexId={props.id} onCreate={update}/>}
         Имя Комплекса: {complex?.name}<br/>
-        Дома: {complex?.houses?.map(c => <div key={c}>id:{c}) <House id={c}/></div>)}
+        Дома: {complex?.houses?.map(c => <div key={c}>id:{c}) <House id={c} onDelete={update}/></div>)}
+        <DeleteResidentialComplex id={props.id} onDelete={props.onDelete}/>
     </>
 }
 
