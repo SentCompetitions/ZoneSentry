@@ -1,9 +1,9 @@
-﻿import { ResidentialComplexCreate } from "../../../api";
-import {ObjectControl} from "react-object-control";
+﻿import {ConstructionCompanyService, ResidentialComplexCreate} from "../../../api";
 import { useState } from "react";
+import {ObjectControlForm} from "react-object-control";
 
 export interface CreateResidentialComplexProps {
-
+    onCreate: () => void
 }
 
 function CreateResidentialComplex(props: CreateResidentialComplexProps) {
@@ -11,8 +11,11 @@ function CreateResidentialComplex(props: CreateResidentialComplexProps) {
         city: "",
         name: ""
     })
+    const onSubmit = () => {
+        ConstructionCompanyService.postApiConstructioncompanyComplexes(create).then(props.onCreate)
+    }
 
-    return <ObjectControl value={create} onChange={setCreate}/>
+    return <ObjectControlForm onSubmit={onSubmit} submitText="Подтвердить" value={create} onChange={setCreate} config={{city:{label:"город"}, name:{label:"имя"}}}/>
 }
 
 export default CreateResidentialComplex;

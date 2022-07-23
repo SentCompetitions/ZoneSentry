@@ -13,6 +13,8 @@ import UserIndexPage from "./pages/user/UserIndexPage";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminIndexPage from "./pages/admin/AdminIndexPage";
 
+import "./styles/global.scss"
+
 function App() {
     const location = useLocation();
 

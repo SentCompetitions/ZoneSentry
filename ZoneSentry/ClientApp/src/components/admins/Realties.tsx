@@ -13,7 +13,7 @@ function Realties(props: RealtiesProps) {
     }, []);
 
     return <>
-        Номер: {realty?.number}<br/>
+        Номер: {realty?.number}
     </>
 }
 
