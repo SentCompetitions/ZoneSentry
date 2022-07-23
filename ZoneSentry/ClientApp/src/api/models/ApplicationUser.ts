@@ -5,6 +5,7 @@
 import type { ApplicationUserType } from './ApplicationUserType';
 import type { ConstructionCompany } from './ConstructionCompany';
 import type { Realty } from './Realty';
+import type { RealtyService } from './RealtyService';
 
 export type ApplicationUser = {
     type: ApplicationUserType;
@@ -12,6 +13,7 @@ export type ApplicationUser = {
     lastName?: string | null;
     patronymic?: string | null;
     ownedRealties?: Array<Realty> | null;
+    prividedRealtyServices?: Array<RealtyService> | null;
     constructionCompany?: ConstructionCompany;
     id?: number;
     userName?: string | null;

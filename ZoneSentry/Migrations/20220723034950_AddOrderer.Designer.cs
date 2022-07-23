@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZoneSentry.Data;
 
@@ -10,9 +11,10 @@ using ZoneSentry.Data;
 namespace ZoneSentry.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220723034950_AddOrderer")]
+    partial class AddOrderer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.7");
@@ -417,14 +419,8 @@ namespace ZoneSentry.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ConstructionCompanyId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("TEXT");
-
-                    b.Property<int?>("OrdererId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Payment")
                         .HasColumnType("INTEGER");
@@ -442,10 +438,6 @@ namespace ZoneSentry.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ConstructionCompanyId");
-
-                    b.HasIndex("OrdererId");
 
                     b.HasIndex("RealtyServiceOrderId");
 
@@ -761,21 +753,9 @@ namespace ZoneSentry.Migrations
 
             modelBuilder.Entity("ZoneSentry.Models.RealtyServicePayment", b =>
                 {
-                    b.HasOne("ZoneSentry.Models.ConstructionCompany", "ConstructionCompany")
-                        .WithMany()
-                        .HasForeignKey("ConstructionCompanyId");
-
-                    b.HasOne("ZoneSentry.Models.ApplicationUser", "Orderer")
-                        .WithMany()
-                        .HasForeignKey("OrdererId");
-
                     b.HasOne("ZoneSentry.Models.RealtyServiceOrder", "RealtyServiceOrder")
                         .WithMany("Payments")
                         .HasForeignKey("RealtyServiceOrderId");
-
-                    b.Navigation("ConstructionCompany");
-
-                    b.Navigation("Orderer");
 
                     b.Navigation("RealtyServiceOrder");
                 });

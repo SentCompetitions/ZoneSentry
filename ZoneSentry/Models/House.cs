@@ -17,6 +17,8 @@ public class House
     public int ResidentialComplexId { get; set; }
     
     public List<Realty> Realties { get; set; }
+    
+    public List<RealtyService> RealtyServices { get; set; }
 }
 
 public class HouseDTO

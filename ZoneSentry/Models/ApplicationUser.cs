@@ -13,6 +13,8 @@ public class ApplicationUser : IdentityUser<int>
     public string? Patronymic { get; set; }
     
     public List<Realty> OwnedRealties { get; set; }
+    
+    public List<RealtyService> PrividedRealtyServices { get; set; }
 
     public ConstructionCompany? ConstructionCompany { get; set; }
 }

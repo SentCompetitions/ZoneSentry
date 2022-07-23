@@ -71,7 +71,7 @@ public class UserRealtiesTenantController : ControllerBase
         var payment = await _db.RentPayments.FirstOrDefaultAsync(r => r.Id == paymentId && r.RentAgreement.Tenant == HttpContext.GetUser());
         if (payment == null) return NotFound();
         
-        // Здесь долна быть проверта на то что деньги действительно пришли и тд, но мы на хакатоне
+        // Здесь долна быть проверка на то что деньги действительно пришли и тд, но мы на хакатоне
         payment.PaymentState = PaymentState.Paid;
         await _db.SaveChangesAsync();
         

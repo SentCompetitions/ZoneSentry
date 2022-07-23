@@ -19,6 +19,10 @@ public class AppMappingProfile : Profile
         CreateMap<Realty,RealtyUserView>();
         CreateMap<RentAgreement,RentAgreementUserView>();
         CreateMap<RentPayment,RentPaymentUserView>();
+        CreateMap<RealtyService,RealtyServiceDTO>();
+        CreateMap<RealtyServiceOrder,RealtyServiceOrderDTO>();
+        CreateMap<RealtyServiceRequest,RealtyServiceRequestDTO>();
+        CreateMap<RealtyServicePayment,RealtyServicePaymentDTO>();
 
         CreateMap<ConstructionCompany, ConstructionCompanyDTO>().ForMember(
             c => c.ResidentialComplexes,

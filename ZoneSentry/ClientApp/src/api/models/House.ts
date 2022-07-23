@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { Realty } from './Realty';
+import type { RealtyService } from './RealtyService';
 import type { ResidentialComplex } from './ResidentialComplex';
 
 export type House = {
@@ -15,4 +16,5 @@ export type House = {
     residentialComplex?: ResidentialComplex;
     residentialComplexId?: number;
     realties?: Array<Realty> | null;
+    realtyServices?: Array<RealtyService> | null;
 };

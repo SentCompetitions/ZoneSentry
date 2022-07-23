@@ -5,6 +5,7 @@
 import type { ApplicationUser } from './ApplicationUser';
 import type { House } from './House';
 import type { PurchaseRequest } from './PurchaseRequest';
+import type { RealtyServiceOrder } from './RealtyServiceOrder';
 import type { RealtyStatus } from './RealtyStatus';
 import type { RentAgreement } from './RentAgreement';
 import type { RentRequest } from './RentRequest';
@@ -22,5 +23,6 @@ export type Realty = {
     rentAgreements?: Array<RentAgreement> | null;
     rentRequests?: Array<RentRequest> | null;
     purchaseRequests?: Array<PurchaseRequest> | null;
+    services?: Array<RealtyServiceOrder> | null;
     currentRentAgreement?: RentAgreement;
 };

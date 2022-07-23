@@ -16,6 +16,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<RentPayment> RentPayments { get; set; } = null!;
     public DbSet<RentRequest> RentRequests { get; set; } = null!;
     public DbSet<PurchaseRequest> PurchaseRequests { get; set; } = null!;
+    public DbSet<RealtyService> RealtyServices { get; set; } = null!;
+    public DbSet<RealtyServiceOrder> RealtyServiceOrders { get; set; } = null!;
+    public DbSet<RealtyServiceRequest> RealtyServiceRequests { get; set; } = null!;
+    public DbSet<RealtyServicePayment> RealtyServicePayments { get; set; } = null!;
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {

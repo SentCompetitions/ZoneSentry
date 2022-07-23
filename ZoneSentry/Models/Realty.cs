@@ -18,7 +18,8 @@ public class Realty
     
     public List<RentAgreement> RentAgreements { get; set; }
     public List<RentRequest> RentRequests { get; set; } 
-    public List<PurchaseRequest> PurchaseRequests { get; set; } 
+    public List<PurchaseRequest> PurchaseRequests { get; set; }
+    public List<RealtyServiceOrder> Services { get; set; }
 
     public RentAgreement? CurrentRentAgreement => RentAgreements != null ? RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now) : null;
 }
