@@ -129,6 +129,18 @@ public class ConstructionCompanyController : ControllerBase
         return _mapper.Map<RealtyDTO>(await GetRealtyObject(id));
     }
     
+    [HttpPut("realties/{id}")]
+    public async Task<ActionResult> UpdateRealty(int id, RealtyUpdate update)
+    {
+        var realty = await GetRealtyObject(id);
+        if (realty == null) return NotFound();
+
+        _mapper.Map(update, realty);
+        await _db.SaveChangesAsync(); 
+        
+        return Ok();
+    }
+    
     [HttpGet("realties/{id}/details")]
     public async Task<ActionResult<RealtyDetails>> GetRealtyDetails(int id)
     {

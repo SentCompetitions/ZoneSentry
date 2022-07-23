@@ -39,6 +39,20 @@ public class UserRealtiesOwnerController : ControllerBase
 
         return realty[0];
     }
+
+    [HttpPut("{realtyId}")]
+    public async Task<ActionResult> UpdateOwnedRealty(int realtyId, RealtyUpdate update)
+    {
+        if (realtyId != update.Id) return BadRequest();
+        
+        var realty = await _db.Realties.Include("RentAgreements.Tenant").FirstOrDefaultAsync(r => r.Id == realtyId && r.Owner == HttpContext.GetUser());
+        if (realty == null) return NotFound();
+
+        _mapper.Map(update, realty);
+        await _db.SaveChangesAsync(); 
+        
+        return Ok();
+    }
     
     #region rentRequests
     [HttpGet("rentRequests")]

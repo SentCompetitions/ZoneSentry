@@ -4,6 +4,7 @@
 import type { PurchaseRequestCreate } from '../models/PurchaseRequestCreate';
 import type { PurchaseRequestDTO } from '../models/PurchaseRequestDTO';
 import type { RealtyDetails } from '../models/RealtyDetails';
+import type { RealtyUpdate } from '../models/RealtyUpdate';
 import type { RealtyUserView } from '../models/RealtyUserView';
 import type { RentPaymentUserView } from '../models/RentPaymentUserView';
 import type { RentRequestDTO } from '../models/RentRequestDTO';
@@ -39,6 +40,27 @@ realtyId: number,
             path: {
                 'realtyId': realtyId,
             },
+        });
+    }
+
+    /**
+     * @param realtyId 
+     * @param requestBody 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static putApiUserrealtiesowner(
+realtyId: number,
+requestBody?: RealtyUpdate,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/userrealtiesowner/{realtyId}',
+            path: {
+                'realtyId': realtyId,
+            },
+            body: requestBody,
+            mediaType: 'application/json-patch+json',
         });
     }
 

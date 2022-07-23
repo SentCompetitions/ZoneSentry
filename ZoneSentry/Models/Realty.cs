@@ -86,3 +86,13 @@ public class RealtyDetails
 
     public RentAgreementDTO? CurrentRentAgreement;
 }
+
+public class RealtyUpdate
+{
+    public int Id { get; set; }
+    
+    public int? PaymentPerMonth { get; set; }
+    public int? SellCost { get; set; }
+
+    public RealtyStatus RealtyStatus { get; set; }
+}

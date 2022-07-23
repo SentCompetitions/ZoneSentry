@@ -25,6 +25,8 @@ public class AppMappingProfile : Profile
         CreateMap<RealtyServicePayment,RealtyServicePaymentDTO>();
         CreateMap<RentAgreement,RentAgreementDTO>();
         
+        CreateMap<RealtyUpdate,Realty>();
+        
         CreateMap<Realty,RealtyDetails>().ForMember(
             c => c.CurrentRentAgreement,
             o => o.MapFrom(r => r.RentAgreements != null ? r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now) : null)

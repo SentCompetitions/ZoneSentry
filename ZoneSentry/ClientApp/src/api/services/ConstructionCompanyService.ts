@@ -7,6 +7,7 @@ import type { HouseDTO } from '../models/HouseDTO';
 import type { RealtyCreate } from '../models/RealtyCreate';
 import type { RealtyDetails } from '../models/RealtyDetails';
 import type { RealtyDTO } from '../models/RealtyDTO';
+import type { RealtyUpdate } from '../models/RealtyUpdate';
 import type { ResidentialComplexCreate } from '../models/ResidentialComplexCreate';
 import type { ResidentialComplexDTO } from '../models/ResidentialComplexDTO';
 
@@ -146,6 +147,27 @@ id: number,
             path: {
                 'id': id,
             },
+        });
+    }
+
+    /**
+     * @param id 
+     * @param requestBody 
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static putApiConstructioncompanyRealties(
+id: number,
+requestBody?: RealtyUpdate,
+): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/constructioncompany/realties/{id}',
+            path: {
+                'id': id,
+            },
+            body: requestBody,
+            mediaType: 'application/json-patch+json',
         });
     }
 
