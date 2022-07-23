@@ -1,3 +1,25 @@
 ﻿.layout{
     margin-top: 32px;
 }
+
+.alert{
+    z-index: 9999;
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    justify-items: center;
+    background: rgba(0,0,0,0.4) ;
+
+    & .alertBody{
+        width: 20vw;
+        min-width: 400px;
+        background: #fff;
+        margin: auto 0;
+        border-radius: 12px;
+        padding: 16px;
+        position: relative;
+    }
+}

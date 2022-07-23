@@ -1,10 +1,12 @@
 ﻿import {useState} from "react";
 import {ConstructionCompanyService, HouseCreate} from "../../../api";
 import {ObjectControlForm} from "react-object-control";
+import Alert from "../../other/Alert";
 
 export interface CreateHouseProps {
     complexId: number
     onCreate: () => void
+    onCancel: () => void
 }
 
 function CreateHouse(props: CreateHouseProps) {
@@ -19,14 +21,17 @@ function CreateHouse(props: CreateHouseProps) {
         ConstructionCompanyService.postApiConstructioncompanyComplexesHouses(props.complexId, create).then(props.onCreate)
     }
     
-    return <ObjectControlForm onSubmit={onSumbit} submitText="Подтвердить" value={create} onChange={setCreate} 
-          config={{
-              street: {label: "улица"}, 
-              houseNumber: {label: "номер дома"}, 
-              building: {label: "здание"}, 
-              district: {label: "район"}, 
-              housing: {label: "корпус"}
-          }}></ObjectControlForm>
+    return <Alert>
+        <ObjectControlForm onSubmit={onSumbit} submitText="Подтвердить" value={create} onChange={setCreate}
+            config={{
+                street: {label: "улица"},
+                houseNumber: {label: "номер дома"},
+                building: {label: "здание"},
+                district: {label: "район"},
+                housing: {label: "корпус"}
+            }}></ObjectControlForm>
+        <button onClick={() => props.onCancel()}>Закрыть</button>
+    </Alert>
 }
 
 export default CreateHouse;

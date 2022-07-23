@@ -17,6 +17,10 @@ function ResidentialComplex(props: ResidentialComplexProps) {
     const update = () => {
         ConstructionCompanyService.getApiConstructioncompanyComplexes(props.id).then(d => setComplex(d));
     }
+
+    const cancelCreate = () => {
+        setShowCreate(!showCreate)
+    }
     
     useEffect( () => {
         update()
@@ -33,11 +37,8 @@ function ResidentialComplex(props: ResidentialComplexProps) {
                 {complex?.houses?.map(c => <div key={c}><House id={c} onDelete={update}/></div>)}
             </div>
             <div className="create createHouse">
-                {!showCreate && <button className="createShow" onClick={() => setShowCreate(!showCreate)}>Добавить дом</button>}
-                {showCreate && <div className="creating">
-                    <CreateHouse complexId={props.id} onCreate={update}/>
-                    <button className="createCancel" onClick={() => setShowCreate(!showCreate)}>Отмена</button>
-                </div>}
+                <button className="createShow" onClick={() => setShowCreate(!showCreate)}>Добавить дом</button>
+                {showCreate && <CreateHouse complexId={props.id} onCreate={update} onCancel={cancelCreate}/>}
             </div>
             <DeleteResidentialComplex id={props.id} onDelete={props.onDelete}/>
         </div>
