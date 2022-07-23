@@ -1,0 +1,49 @@
+﻿$plusBtn: 60px;
+
+.listBox{
+    border-radius: 16px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.listArea{
+    background: #E1F0FA;
+}
+
+.adminCompany{
+    margin: auto;
+    width: 80vw;
+    background-color: #fff;
+
+    display: grid;
+    grid-template-columns: 1fr 4fr $plusBtn;
+
+    & .create{
+        &>.createShow{
+            height: 80%;
+            width: 80%;
+            margin: auto;
+        }
+        &>.createCancel{
+
+        }
+    }
+
+    & .adminResidentialComplex{
+        display: grid;
+        grid-template-columns: 1fr 4fr $plusBtn $plusBtn;
+        background-color: #bbb;
+
+        & .adminHouse{
+            display: grid;
+            grid-template-columns: 1fr 4fr $plusBtn $plusBtn;
+            background-color: #888;
+
+            & .adminRealties{
+                display: grid;
+                grid-template-columns: 4fr $plusBtn;
+                background-color: #fff;
+            }
+        }
+    }
+}

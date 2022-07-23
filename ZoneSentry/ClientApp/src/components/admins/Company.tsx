@@ -2,11 +2,12 @@
 import {ConstructionCompanyDTO, ConstructionCompanyService} from "../../api";
 import ResidentialComplex from "./ResidentialComplex";
 import CreateResidentialComplex from "./create/CreateResidentialComplex";
+import Info from "../other/Info";
 
 export interface CompanyProps {}
 
 function Company(props: CompanyProps) {
-    const [company, setCompany] = useState<ConstructionCompanyDTO>();
+    const [company, setCompany] = useState<ConstructionCompanyDTO>()
     const [showCreate, setShowCreate] = useState(false)
     
     const update = () => {
@@ -18,10 +19,19 @@ function Company(props: CompanyProps) {
     }, []);
 
     return<>
-        <button onClick={() => setShowCreate(!showCreate)}> {showCreate ? "Отмена" : "Добавить ЖК"}</button>
-        {showCreate && <CreateResidentialComplex onCreate={update}/>}
-        Имя Компании: {company?.name}<br/>
-        Комплексы: {company?.residentialComplexes?.map(c => <div key={c}>id:{c}) <ResidentialComplex id={c} onDelete={update}/></div>)}
+        <div className="adminCompany listBox">
+            <Info>Имя Компании: {company?.name}</Info>
+            <div className="complexesList">
+                {company?.residentialComplexes?.map(c => <div key={c}><ResidentialComplex id={c} onDelete={update}/></div>)}
+            </div>
+            <div className="create createComplex">
+                {!showCreate && <button className="createShow" onClick={() => setShowCreate(!showCreate)}>Добавить ЖК</button>}
+                {showCreate && <div className="creating">
+                    <CreateResidentialComplex onCreate={update}/>
+                    <button className="createCancel" onClick={() => setShowCreate(!showCreate)}>Отмена</button>
+                    </div>}
+            </div>
+        </div>
     </>
 }
 

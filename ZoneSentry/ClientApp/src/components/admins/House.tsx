@@ -4,6 +4,7 @@ import Realties from "./Realties";
 import CreateResidentialComplex from "./create/CreateResidentialComplex";
 import CreateRealty from "./create/CreateRealty";
 import DeleteHouse from "./delete/DeleteHouse";
+import Info from "../other/Info";
 
 export interface HouseProps {
     id: number
@@ -15,7 +16,7 @@ function House(props: HouseProps) {
     const [home, setHome] = useState<HouseDTO>();
     const [showCreate, setShowCreate] = useState(false)
     let realtiesCount = home?.realties?.length ?? 0;
-    const [showAmount, setShowAmount] = useState(countDefaultShowAmount(realtiesCount))
+    const [showAmount, setShowAmount] = useState(0)
 
     const update = () =>{
         ConstructionCompanyService.getApiConstructioncompanyHouses(props.id).then(d => setHome(d));
@@ -25,15 +26,24 @@ function House(props: HouseProps) {
         update()
     }, []);
 
+    useEffect(() => {
+        if (home) setShowAmount(countDefaultShowAmount(realtiesCount))
+    }, [home])
+
     return <>
-        {home && <>
-            <button onClick={() => setShowCreate(!showCreate)}> {showCreate ? "Отмена" : "Добавить помещение"} </button>
-            {showCreate && <CreateRealty houseId={props.id} onCreate={update}/>}
-            Улица: {home?.street}<br/>
-            Помещение: {home?.realties?.slice(0, showAmount).map(r => <div key={r}>id:{r})<Realties id={r} onDelete={update}/></div>)}
-            {showAmount < realtiesCount && <button onClick={() => setShowAmount(increaseShowAmount(showAmount, realtiesCount))}>Показать больше</button>}
+        {home && <div className="adminHouse listBox">
+            <Info>Улица: {home?.street}</Info>
+            <div className="realtiesList">
+                {home?.realties?.slice(0, showAmount).map(r => <div key={r}><Realties id={r} onDelete={update}/></div>)}
+                {showAmount < realtiesCount && <button onClick={() => setShowAmount(increaseShowAmount(showAmount, realtiesCount))}>Показать больше</button>}
+            </div>
+            {!showCreate && <button onClick={() => setShowCreate(!showCreate)}>Добавить помещение</button>}
+            {showCreate && <div className="creating">
+                <CreateRealty houseId={props.id} onCreate={update}/>
+                <button className="createCancel" onClick={() => setShowCreate(!showCreate)}>Отмена</button>
+            </div>}
             <DeleteHouse id={props.id} onDelete={props.onDelete}/>
-        </>}
+        </div>}
     </>
 }
 

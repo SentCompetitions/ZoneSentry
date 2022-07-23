@@ -1,6 +1,7 @@
 ﻿import {useEffect, useState} from "react";
 import {ConstructionCompanyService, RealtyDTO} from "../../api";
 import DeleteRealty from "./delete/DeleteRealty";
+import Info from "../other/Info";
 
 export interface RealtiesProps {
     id: number
@@ -15,8 +16,10 @@ function Realties(props: RealtiesProps) {
     }, []);
 
     return <>
-        Номер: {realty?.number}<br/>
-        <DeleteRealty id={props.id} onDelete={props.onDelete}/>
+        <div className="adminRealties listBox">
+            <Info>Номер: {realty?.number}</Info>
+            <DeleteRealty id={props.id} onDelete={props.onDelete}/>
+        </div>
     </>
 }
 

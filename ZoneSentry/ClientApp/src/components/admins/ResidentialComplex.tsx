@@ -3,6 +3,7 @@ import {ConstructionCompanyService, ResidentialComplexDTO} from "../../api";
 import House from "./House";
 import CreateHouse from "./create/CreateHouse";
 import DeleteResidentialComplex from "./delete/DeleteResidentialComplex";
+import Info from "../other/Info";
 
 export interface ResidentialComplexProps {
     id: number
@@ -22,11 +23,20 @@ function ResidentialComplex(props: ResidentialComplexProps) {
     }, []);
 
     return <>
-        <button onClick={() => setShowCreate(!showCreate)}> {showCreate ? "Отмена" : "Добавить дом"} </button>
-        {showCreate && <CreateHouse complexId={props.id} onCreate={update}/>}
-        Имя Комплекса: {complex?.name}<br/>
-        Дома: {complex?.houses?.map(c => <div key={c}>id:{c}) <House id={c} onDelete={update}/></div>)}
-        <DeleteResidentialComplex id={props.id} onDelete={props.onDelete}/>
+        <div className="adminResidentialComplex listBox">
+            <Info>Имя Комплекса: {complex?.name}</Info>
+            <div className="housesList">
+                {complex?.houses?.map(c => <div key={c}><House id={c} onDelete={update}/></div>)}
+            </div>
+            <div className="create createHouse">
+                {!showCreate && <button className="createShow" onClick={() => setShowCreate(!showCreate)}>Добавить дом</button>}
+                {showCreate && <div className="creating">
+                    <CreateHouse complexId={props.id} onCreate={update}/>
+                    <button className="createCancel" onClick={() => setShowCreate(!showCreate)}>Отмена</button>
+                </div>}
+            </div>
+            <DeleteResidentialComplex id={props.id} onDelete={props.onDelete}/>
+        </div>
     </>
 }
 
