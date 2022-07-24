@@ -16,7 +16,29 @@
             display: grid;
             grid-template-columns: 128px 128px 52px;
 
-            &>img{
+            &>button{
+                padding: 0;
+                background: inherit;
+                color: inherit;
+            }
+
+            & .profileMenu{
+                position: fixed;
+                width: 120px;
+                border: 1px solid #0015;
+                border-radius: 4px;
+                padding: 4px 6px;
+
+                &>a{
+                    border: 1px solid #0012;
+                    display: block;
+                    background: white;
+                    width: 100%;
+                    height: 40px;
+                }
+            }
+
+            & .profileIcon{
                 margin: auto;
                 height: 52px;
                 width: 52px;
