@@ -22,6 +22,7 @@ function CreateHouse(props: CreateHouseProps) {
     }
     
     return <Alert>
+        <h2 className="alertTitle">Новый дом</h2>
         <ObjectControlForm onSubmit={onSumbit} submitText="Подтвердить" value={create} onChange={setCreate}
             config={{
                 street: {label: "улица"},
@@ -30,7 +31,7 @@ function CreateHouse(props: CreateHouseProps) {
                 district: {label: "район"},
                 housing: {label: "корпус"}
             }}></ObjectControlForm>
-        <button onClick={() => props.onCancel()}>Закрыть</button>
+        <button className="cancel" onClick={() => props.onCancel()}>Закрыть</button>
     </Alert>
 }
 

@@ -5,7 +5,7 @@ export interface InfoProps {
 }
 
 function Info(props: InfoProps) {
-    return <p className="info">{props.children}</p>
+    return <h2 className="info">{props.children}</h2>
 }
 
 export default Info;

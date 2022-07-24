@@ -18,8 +18,9 @@ function CreateResidentialComplex(props: CreateResidentialComplexProps) {
     }
 
     return <Alert>
+        <h2 className="alertTitle">Новый комплекс</h2>
         <ObjectControlForm onSubmit={onSubmit} submitText="Подтвердить" value={create} onChange={setCreate} config={{city:{label:"город"}, name:{label:"имя"}}}/>
-        <button onClick={() => props.onCancel()}>Закрыть</button>
+        <button className="cancel" onClick={() => props.onCancel()}>Закрыть</button>
     </Alert>
 }
 

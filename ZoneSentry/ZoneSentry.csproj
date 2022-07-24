@@ -64,6 +64,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="ClientApp\public\font" />
       <Folder Include="wwwroot\Media" />
     </ItemGroup>
 

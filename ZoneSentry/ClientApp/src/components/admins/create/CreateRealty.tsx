@@ -18,8 +18,9 @@ function CreateRealty(props: CreateRealtyProps) {
     }
     
     return <Alert>
+        <h2 className="alertTitle">Новое помещение</h2>
         <ObjectControlForm onSubmit={onSumbit} onChange={setCreate} value={create} submitText="Подтвердить" config={{number: {label:"номер"}}}></ObjectControlForm>
-        <button onClick={() => props.onCancel()}>Закрыть</button>
+        <button className="cancel" onClick={() => props.onCancel()}>Закрыть</button>
     </Alert>
 }
 

@@ -13,11 +13,11 @@ export interface ResidentialComplexProps {
 function ResidentialComplex(props: ResidentialComplexProps) {
     const [complex, setComplex] = useState<ResidentialComplexDTO>();
     const [showCreate, setShowCreate] = useState(false)
+    const [showHouses, setShowHouses] = useState(false)
 
     const update = () => {
         ConstructionCompanyService.getApiConstructioncompanyComplexes(props.id).then(d => setComplex(d));
     }
-
     const cancelCreate = () => {
         setShowCreate(!showCreate)
     }
@@ -29,18 +29,24 @@ function ResidentialComplex(props: ResidentialComplexProps) {
     return <>
         <div className="adminResidentialComplex listBox">
             <div className="listInfoBlock">
-                <Info>Имя Комплекса: {complex?.name}</Info>
                 <img src="defaultPictures/Turgenev.jpg" alt="*фото комплекса*"/>
+                <div className="listInfoBlockSB">
+                    <Info>{complex?.name}</Info>
+                    <button className="editBtn">Изменить</button>
+                    <div className="create createHouse">
+                        <button className="createShow editBtn" onClick={() => setShowCreate(!showCreate)}>Добавить дом</button>
+                        {showCreate && <CreateHouse complexId={props.id} onCreate={update} onCancel={cancelCreate}/>}
+                    </div>
+                    <DeleteResidentialComplex id={props.id} onDelete={props.onDelete}/>
+                </div>
+                <button className="hideListBtn" onClick={() => setShowHouses(!showHouses)}>
+                    <img className={showHouses?'show':''} src="icons/hideBtn.svg" alt="скрыть"/>
+                </button>
             </div>
 
-            <div className="housesList">
+            <div className={showHouses?"housesList":"hide housesList"}>
                 {complex?.houses?.map(c => <div key={c}><House id={c} onDelete={update}/></div>)}
             </div>
-            <div className="create createHouse">
-                <button className="createShow" onClick={() => setShowCreate(!showCreate)}>Добавить дом</button>
-                {showCreate && <CreateHouse complexId={props.id} onCreate={update} onCancel={cancelCreate}/>}
-            </div>
-            <DeleteResidentialComplex id={props.id} onDelete={props.onDelete}/>
         </div>
     </>
 }

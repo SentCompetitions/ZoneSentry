@@ -1,4 +1,19 @@
-﻿.layout{
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+*{
+    font-family: 'Inter', sans-serif;
+}
+
+head, body, button, a{
+    font-size:20px;
+    line-height: 24px;
+}
+
+.hide{
+    display: none;
+}
+
+.layout{
     margin-top: 32px;
 }
 
@@ -22,4 +37,47 @@
         padding: 16px;
         position: relative;
     }
+
+    & .alertBody{
+        button{
+            width: 100%;
+            border-radius: 4px;
+            padding: 6px 10px;
+            border: none;
+
+            &.cancel{
+                background: #e0e1e2;
+                border-width: 1px;
+
+                &:hover{
+                    background: #d0d1d2;
+                }
+            }
+        }
+
+        form{
+            display: grid;
+            margin-bottom: 6px;
+
+            input{
+                border: 1px solid #999!important;
+
+            }
+
+            button{
+                background: #3F51B5!important;
+                color:#fff;
+
+                &:hover{
+                    background: #2F41A5!important;
+                    color:#fff!important;
+                }
+            }
+        }
+
+    }
+}
+
+.alertTitle{
+    text-align: center;
 }

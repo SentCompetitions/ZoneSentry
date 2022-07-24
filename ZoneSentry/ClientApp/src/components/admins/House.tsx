@@ -36,16 +36,21 @@ function House(props: HouseProps) {
     return <>
         {home && <div className="adminHouse listBox">
             <div className="listInfoBlock">
-                <Info>Улица: {home?.street}</Info>
                 <img src="defaultPictures/Turgenev.jpg" alt="*фото дома*"/>
+                <div className="listInfoBlockSB">
+                    <Info>Улица: {home?.street}</Info>
+                    <button className="editBtn">Изменить</button>
+                    <div className="create createHouse">
+                        <button className="createShow editBtn" onClick={() => setShowCreate(!showCreate)}>Добавить помещение</button>
+                        {showCreate && <CreateRealty houseId={props.id} onCreate={update} onCancel={cancelCreate}/>}
+                    </div>
+                    <DeleteHouse id={props.id} onDelete={props.onDelete}/>
+                </div>
             </div>
             <div className="realtiesList">
                 {home?.realties?.slice(0, showAmount).map(r => <div key={r}><Realties id={r} onDelete={update}/></div>)}
                 {showAmount < realtiesCount && <button onClick={() => setShowAmount(increaseShowAmount(showAmount, realtiesCount))}>Показать больше</button>}
             </div>
-            <button onClick={() => setShowCreate(!showCreate)}>Добавить помещение</button>
-            {showCreate && <CreateRealty houseId={props.id} onCreate={update} onCancel={cancelCreate}/>}
-            <DeleteHouse id={props.id} onDelete={props.onDelete}/>
         </div>}
     </>
 }

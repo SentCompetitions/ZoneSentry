@@ -18,10 +18,13 @@ function Realties(props: RealtiesProps) {
     return <>
         <div className="adminRealties listBox">
             <div className="listInfoBlock">
-                <Info>Номер: {realty?.number}</Info>
                 <img src="defaultPictures/kompom.jpg" alt="*фото помещения*"/>
+                <div className="listInfoBlockSB">
+                    <Info>Номер: {realty?.number}</Info>
+                    <button className="editBtn">Изменить</button>
+                    <DeleteRealty id={props.id} onDelete={props.onDelete}/>
+                </div>
             </div>
-            <DeleteRealty id={props.id} onDelete={props.onDelete}/>
         </div>
     </>
 }

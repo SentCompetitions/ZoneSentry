@@ -24,12 +24,12 @@ function Company(props: CompanyProps) {
     return<>
         <div className="adminCompany listBox">
             <Info>Имя Компании: {company?.name}</Info>
-            <div className="complexesList">
-                {company?.residentialComplexes?.map(c => <div key={c}><ResidentialComplex id={c} onDelete={update}/></div>)}
-            </div>
-            <div className="create createComplex">
+            <div className="create createComplex adminResidentialComplex">
                 <button className="createShow" onClick={() => setShowCreate(!showCreate)}>Добавить ЖК</button>
                 {showCreate && <CreateResidentialComplex onCreate={update} onCancel={cancelCreate}/>}
+            </div>
+            <div className="complexesList">
+                {company?.residentialComplexes?.map(c => <div key={c}><ResidentialComplex id={c} onDelete={update}/></div>)}
             </div>
         </div>
     </>
