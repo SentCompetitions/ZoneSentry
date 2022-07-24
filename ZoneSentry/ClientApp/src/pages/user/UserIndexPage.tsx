@@ -8,6 +8,7 @@ import {SVGUrl} from "../../components/SVGUrl";
 import Realty from "../../components/users/Realty";
 import useMode from "../../hooks/useMode";
 import "../../styles/user.scss";
+import Stats from "../../components/Stats";
 
 function UserIndexPage() {
     const auth = useAuth()
@@ -21,9 +22,11 @@ function UserIndexPage() {
     
     return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
         <div>
-            <p>Привет, {auth.user?.userName}! Сейчас вы {mode == "tenant" ? "Арендатор" : "Инвестор"}</p>
+            <p>Привет, {auth.user?.firstName} {auth.user?.lastName}! Сейчас вы {mode == "tenant" ? "Арендатор" : "Инвестор"}</p>
             <button className="changeUserTypeBtn" onClick={() => setMode(mode == "tenant" ? "owner" : "tenant")}>Переключиться на {mode == "tenant" ? "инвестора" : "арендатора"}</button>
         </div>
+        
+        <Stats/>
 
         <div className="realtiesListBlock">
             <h2>Ваши объекты</h2>

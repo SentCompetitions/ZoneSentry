@@ -1,0 +1,38 @@
+﻿.stats {
+  height: 600px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  
+  .header {
+    grid-column: span 2;
+  }
+  
+  .overal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    p {
+      font-size: 24px;
+      width: 300px;
+      margin: 0;
+      
+      &.money {
+        font-size: 32px;
+        font-weight: bold;
+        
+        &.positive {
+          color: #4CAF50;
+        }
+        &.negative {
+          color: #F44336;
+        }
+        
+        &:not(:last-child) {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+}

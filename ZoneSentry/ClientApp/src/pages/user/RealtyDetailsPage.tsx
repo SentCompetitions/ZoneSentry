@@ -16,6 +16,8 @@ import {useAuth} from "../../components/AuthProvider";
 import PlanView from "../../components/PlanView";
 import Alert from "../../components/other/Alert";
 import {ObjectControlForm, ObjectControlState} from "react-object-control";
+import { Line } from "react-chartjs-2";
+import Stats from "../../components/Stats";
 
 export interface RealtyDetailsPageProps {
     
@@ -83,6 +85,11 @@ function RealtyDetailsPage(props: RealtyDetailsPageProps) {
                 <button className="defaultBtn" onClick={() => setEditing(false)}>Закрыть</button>
             </Alert>}
         </AnimatePresence>
+
+        {realtyId &&
+            <Stats realtyId={parseInt(realtyId)}/>
+        }
+        
         <div className="services">
             <h2>Услуги для помещения</h2>
             { realtyDetails?.services?.map(s => 
