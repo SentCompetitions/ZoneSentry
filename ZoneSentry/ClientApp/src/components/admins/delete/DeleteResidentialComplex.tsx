@@ -10,7 +10,7 @@ function DeleteResidentialComplex(props: DeleteResidentialComplexProps) {
         ConstructionCompanyService.deleteApiConstructioncompanyComplexes(props.id).then(props.onDelete)
     }
 
-    return <button className="deleteBtn editBtn" onClick={deleteThis}>Удалить комплекс</button>
+    return <button className="deleteBtn redBtn whiteBg editBtn" onClick={deleteThis}>Удалить комплекс</button>
 }
 
 export default DeleteResidentialComplex;

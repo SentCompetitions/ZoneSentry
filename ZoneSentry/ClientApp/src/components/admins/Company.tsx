@@ -25,7 +25,7 @@ function Company(props: CompanyProps) {
         <div className="adminCompany listBox">
             <Info>Имя Компании: {company?.name}</Info>
             <div className="create createComplex adminResidentialComplex">
-                <button className="createShow" onClick={() => setShowCreate(!showCreate)}>Добавить ЖК</button>
+                <button className="createShow greenBtn" onClick={() => setShowCreate(!showCreate)}>Добавить ЖК</button>
                 {showCreate && <CreateResidentialComplex onCreate={update} onCancel={cancelCreate}/>}
             </div>
             <div className="complexesList">

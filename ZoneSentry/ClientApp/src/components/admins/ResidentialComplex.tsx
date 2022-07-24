@@ -32,9 +32,9 @@ function ResidentialComplex(props: ResidentialComplexProps) {
                 <img src="defaultPictures/Turgenev.jpg" alt="*фото комплекса*"/>
                 <div className="listInfoBlockSB">
                     <Info>{complex?.name}</Info>
-                    <button className="editBtn">Изменить</button>
+                    <button className="editBtn whiteBg">Изменить</button>
                     <div className="create createHouse">
-                        <button className="createShow editBtn" onClick={() => setShowCreate(!showCreate)}>Добавить дом</button>
+                        <button className="createShow greenBtn whiteBg editBtn" onClick={() => setShowCreate(!showCreate)}>Добавить дом</button>
                         {showCreate && <CreateHouse complexId={props.id} onCreate={update} onCancel={cancelCreate}/>}
                     </div>
                     <DeleteResidentialComplex id={props.id} onDelete={props.onDelete}/>

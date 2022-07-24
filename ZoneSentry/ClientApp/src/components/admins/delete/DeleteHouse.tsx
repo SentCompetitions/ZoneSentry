@@ -10,7 +10,7 @@ function DeleteHouse(props: DeleteHouseProps) {
         ConstructionCompanyService.deleteApiConstructioncompanyHouses(props.id).then(props.onDelete)
     }
 
-    return <button className="deleteBtn editBtn" onClick={deleteThis}>Удалить дом</button>
+    return <button className="deleteBtn redBtn editBtn" onClick={deleteThis}>Удалить дом</button>
 }
 
 export default DeleteHouse;

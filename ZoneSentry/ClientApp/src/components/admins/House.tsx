@@ -41,7 +41,7 @@ function House(props: HouseProps) {
                     <Info>Улица: {home?.street}</Info>
                     <button className="editBtn">Изменить</button>
                     <div className="create createHouse">
-                        <button className="createShow editBtn" onClick={() => setShowCreate(!showCreate)}>Добавить помещение</button>
+                        <button className="createShow greenBtn editBtn" onClick={() => setShowCreate(!showCreate)}>Добавить помещение</button>
                         {showCreate && <CreateRealty houseId={props.id} onCreate={update} onCancel={cancelCreate}/>}
                     </div>
                     <DeleteHouse id={props.id} onDelete={props.onDelete}/>
