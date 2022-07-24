@@ -19,7 +19,7 @@ function Realty(props: RealtyProps) {
     return <div>
         Адрес: {realtyToAddressString(props.r)}
         <Link to={`realties/${props.r.id}`}>Детали</Link>
-        <PlanView planUrl={props.r.planUrl}/>
+        {props.r.planUrl && <PlanView planUrl={props.r.planUrl}/>}
     </div>
 }
 

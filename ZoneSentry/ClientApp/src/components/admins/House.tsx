@@ -1,6 +1,6 @@
 ﻿import {useEffect, useState} from "react";
 import {ConstructionCompanyService, HouseDTO} from "../../api";
-import Realties from "./Realties";
+import Realty from "./Realty";
 import CreateResidentialComplex from "./create/CreateResidentialComplex";
 import CreateRealty from "./create/CreateRealty";
 import DeleteHouse from "./delete/DeleteHouse";
@@ -48,7 +48,7 @@ function House(props: HouseProps) {
                 </div>
             </div>
             <div className="realtiesList">
-                {home?.realties?.slice(0, showAmount).map(r => <div key={r}><Realties id={r} onDelete={update}/></div>)}
+                {home?.realties?.slice(0, showAmount).map(r => <div key={r}><Realty id={r} onDelete={update}/></div>)}
                 {showAmount < realtiesCount && <button onClick={() => setShowAmount(increaseShowAmount(showAmount, realtiesCount))}>Показать больше</button>}
             </div>
         </div>}

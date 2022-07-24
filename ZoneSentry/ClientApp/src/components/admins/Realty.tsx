@@ -8,7 +8,7 @@ export interface RealtiesProps {
     onDelete: () => void
 }
 
-function Realties(props: RealtiesProps) {
+function Realty(props: RealtiesProps) {
     const [realty, setRealty] = useState<RealtyDTO>();
 
     useEffect( () => {
@@ -29,4 +29,4 @@ function Realties(props: RealtiesProps) {
     </>
 }
 
-export default Realties;
+export default Realty;
