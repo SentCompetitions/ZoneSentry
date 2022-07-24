@@ -32,12 +32,13 @@ public class UserRealtiesTenantController : ControllerBase
     [HttpGet("realties/{realtyId}")]
     public async Task<ActionResult<RealtyDetails>> GetRentedRealty(int realtyId)
     {
-        var rented = _db.Realties.Include("RentAgreements.Tenant").Where(r => r.Id == realtyId && r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now).Tenant == HttpContext.GetUser());
+        var realty = await _db.Realties
+            .Include("RentAgreements.Tenant")
+            .Include(r => r.House.ResidentialComplex.ConstructionCompany)
+            .FirstOrDefaultAsync(r => r.Id == realtyId && r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now).Tenant == HttpContext.GetUser());
+        if (realty == null) return NotFound();
 
-        var realty = await _mapper.ProjectTo<RealtyDetails>(rented).ToListAsync();
-        if (realty.Count() == 0) return NotFound();
-        
-        return realty[0];
+        return _mapper.Map<RealtyDetails>(realty);
     }
 
     [HttpPost("requestRent")]
