@@ -17,7 +17,7 @@ function Realty(props: RealtyProps) {
     const [loading, setLoading] = useState(false)
     
     return <>
-        <img src="/defaultPictures/kompom.jpg"/>
+        {/*<img src="/defaultPictures/kompom.jpg"/>*/}
         <div>
             <h3>Адрес: {realtyToAddressString(props.r)}</h3>
             {props.r.planUrl && <PlanView planUrl={props.r.planUrl}/>}

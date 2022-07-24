@@ -1,8 +1,8 @@
 ﻿import {
-    RealtyDetails,
+    RealtyDetails, RealtyServiceDTO,
     RealtyStatus,
     RealtyUpdate,
-    UserRealtiesOwnerService,
+    UserRealtiesOwnerService, UserRealtiesServicesOwnerService, UserRealtiesServicesTenantService,
     UserRealtiesTenantService
 } from "../../api";
 import {useEffect, useState} from "react";
@@ -30,11 +30,20 @@ function RealtyDetailsPage(props: RealtyDetailsPageProps) {
     const [mode, setMode] = useMode()
     const auth = useAuth()
     const [editing, setEditing] = useState(false)
+    const [avalibleservices, setAvalibleServices] = useState<RealtyServiceDTO[]>()
+    const [requestingService, setRequestingService] = useState(false)
     
     const update = (noReset?: boolean) => {
         if (!noReset) setRealtyDetails(undefined)
-        if (mode == "tenant" && realtyId) UserRealtiesTenantService.getApiUserrealtiestenantRealties1(parseInt(realtyId)).then(d => setRealtyDetails(d))
-        if (mode == "owner" && realtyId) UserRealtiesOwnerService.getApiUserrealtiesownerRealties1(parseInt(realtyId)).then(d => setRealtyDetails(d))
+        
+        if (mode == "tenant" && realtyId) {
+            UserRealtiesTenantService.getApiUserrealtiestenantRealties1(parseInt(realtyId)).then(d => setRealtyDetails(d))
+            UserRealtiesServicesTenantService.getApiUserrealtiesservicestenantRealtiesAvailable(parseInt(realtyId)).then(d => setAvalibleServices(d))
+        }
+        if (mode == "owner" && realtyId) {
+            UserRealtiesOwnerService.getApiUserrealtiesownerRealties1(parseInt(realtyId)).then(d => setRealtyDetails(d))
+            UserRealtiesServicesOwnerService.getApiUserrealtiesservicesownerRealtiesAvailable(parseInt(realtyId)).then(d => setAvalibleServices(d))
+        }
     }
     
     useEffect(() => {
@@ -99,10 +108,22 @@ function RealtyDetailsPage(props: RealtyDetailsPageProps) {
                     {/*<text className="info">Доп инфа: Это наш лютый охранник ВАСЯН. Этот работяга работал на стройке, и конечно же 8 лет в пятёрочке!</text>*/}
                 </a>
             )}
-            <a className="createServiceLink">
+            <a onClick={() => setRequestingService(true)} className="createServiceLink">
                 Добавить услугу
             </a>
         </div>
+
+        <AnimatePresence>
+            {requestingService && <Alert>
+                <h1>Доступные услуги</h1>
+                {avalibleservices?.map(s => <div>
+                    <p>{s.name}</p>
+                    <p>{s.cost}/месяц</p>
+                </div>)}
+                <button className="defaultBtn" onClick={() => setRequestingService(false)}>Закрыть</button>
+            </Alert>}
+        </AnimatePresence>
+        
         {realtyDetails?.planUrl &&
             <div className="secondInfoBlock">
                 <PlanView planUrl={realtyDetails.planUrl}/>
