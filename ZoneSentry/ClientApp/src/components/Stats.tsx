@@ -55,6 +55,9 @@ function Stats(props: StatsProps) {
                         }
                     },
                     scales: {
+                        y: {
+                            min: 0
+                        },
                         x: {
                             display: true,
                             type: 'time',

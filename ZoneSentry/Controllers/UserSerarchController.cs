@@ -27,7 +27,7 @@ public class UserSerarchController : ControllerBase
         if (filters.RealtyStatus == RealtyStatus.NotForSale) return BadRequest();
 
         return await _mapper.ProjectTo<RealtyUserView>(_db.Realties.Where(r =>
-            (filters.City != null ? r.House.ResidentialComplex.City == filters.City : true) &&
+            (filters.City != null && filters.City != "" ? r.House.ResidentialComplex.City == filters.City : true) &&
             (filters.RealtyStatus != null ? r.RealtyStatus == filters.RealtyStatus : r.RealtyStatus != RealtyStatus.NotForSale) &&
             (filters.AreaMax != null ? r.Area <= filters.AreaMax : true) &&
             (filters.AreaMin != null ? r.Area >= filters.AreaMin : true) &&

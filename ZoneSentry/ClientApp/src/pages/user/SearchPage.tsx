@@ -50,7 +50,7 @@ function SearchPage() {
             </div>
             <div className="resultsBox">
                 <div className={`resultsList result ${showMap && "hide"}`}>
-                    {searchResult?.map(r => <div className="resultItem" key={r.id}><Realty r={r}/></div>)}
+                    {searchResult?.map(r => <div className="resultItem" key={r.id}><Realty withAcceptButton r={r}/></div>)}
                 </div>
                 <div className={`resultsMap result ${!showMap && "hide"}`}>
                     <img src="/defaultPictures/map.jpg"/>

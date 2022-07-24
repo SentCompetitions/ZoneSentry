@@ -1,14 +1,12 @@
-﻿import {SVGUrl} from "../SVGUrl";
-import {RealtyUserView} from "../../api";
+﻿import {RealtyStatus, RealtyUserView, UserRealtiesOwnerService, UserRealtiesTenantService} from "../../api";
 import {useState} from "react";
-import { motion } from "framer-motion";
-import {upVariants} from "../../animations";
 import {realtyToAddressString} from "../../../utils/objectsToAddressString";
 import PlanView from "../PlanView";
 import {Link} from "react-router-dom";
 
 export interface RealtyProps {
-    r: RealtyUserView
+    r: RealtyUserView,
+    withAcceptButton?: boolean
 }
 
 export function dist(x1:number, x2:number, y1:number, y2: number){
@@ -16,12 +14,18 @@ export function dist(x1:number, x2:number, y1:number, y2: number){
 }
 
 function Realty(props: RealtyProps) {
+    const [loading, setLoading] = useState(false)
+    
     return <>
         <img src="/defaultPictures/kompom.jpg"/>
         <div>
             <h3>Адрес: {realtyToAddressString(props.r)}</h3>
-            <Link className="btn" to={`realties/${props.r.id}`}>Детали</Link>
             {props.r.planUrl && <PlanView planUrl={props.r.planUrl}/>}
+            <Link className="btn" to={`realties/${props.r.id}`}>Детали</Link>
+            <button disabled={loading} onClick={() => {
+                if (props.r.realtyStatus == RealtyStatus.FOR_SALE) UserRealtiesOwnerService.postApiUserrealtiesownerRequestpurchase({realtyId: props.r.id})
+                if (props.r.realtyStatus == RealtyStatus.FOR_RENT) UserRealtiesTenantService.postApiUserrealtiestenantRequestrent({realtyId: props.r.id, durationInMonths: 6})
+            }}>Запросить</button>
         </div>
     </>
 }
