@@ -22,10 +22,10 @@ function Realty(props: RealtyProps) {
             <h3>Адрес: {realtyToAddressString(props.r)}</h3>
             {props.r.planUrl && <PlanView planUrl={props.r.planUrl}/>}
             <Link className="btn" to={`realties/${props.r.id}`}>Детали</Link>
-            <button disabled={loading} onClick={() => {
+            {props.withAcceptButton && <button disabled={loading} onClick={() => {
                 if (props.r.realtyStatus == RealtyStatus.FOR_SALE) UserRealtiesOwnerService.postApiUserrealtiesownerRequestpurchase({realtyId: props.r.id})
                 if (props.r.realtyStatus == RealtyStatus.FOR_RENT) UserRealtiesTenantService.postApiUserrealtiestenantRequestrent({realtyId: props.r.id, durationInMonths: 6})
-            }}>Запросить</button>
+            }}>Запросить</button>}
         </div>
     </>
 }
