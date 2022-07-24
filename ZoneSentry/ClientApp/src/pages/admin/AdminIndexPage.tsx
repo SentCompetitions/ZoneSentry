@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import {useAuth} from "../../components/AuthProvider";
 import {upVariants} from "../../animations";
 import Company from "../../components/admins/Company";
-import 'react-object-control/styles/simple.css'
 import './../../styles/ListBox.scss'
 
 
