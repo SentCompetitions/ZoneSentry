@@ -1,0 +1,28 @@
+﻿#navbar{
+    position: fixed;
+    height: 72px;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid rgba(63, 81, 181, 0.15);
+    top: 0;
+    &>.navbarBox{
+        padding: 5px 128px;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 105px 2fr 1fr;
+        grid-column-gap: 48px;
+
+        &>.userArea{
+            display: grid;
+            grid-template-columns: 128px 128px 52px;
+
+            &>img{
+                margin: auto;
+                height: 52px;
+                width: 52px;
+                border-radius: 32px;
+            }
+        }
+
+    }
+}

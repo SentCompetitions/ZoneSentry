@@ -10,6 +10,7 @@ import chatActiveIcon from '../images/chatActiveIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import profileActiveIcon from '../images/profileActiveIcon.svg';
 import {upVariants} from "../../animations";
+import Navbar from "../../components/Navbar";
 
 export interface Props {
 
@@ -20,10 +21,8 @@ function AdminLayout(props: Props) {
     const Outlet = useOutlet()
    
     return <>
-        <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} style={{
-            width: '100%',
-            minHeight: '100vh'
-        }}>
+        <Navbar/>
+        <motion.div className="main" variants={upVariants} initial={'init'} animate={'show'} exit={'hide'}>
             <AnimatePresence exitBeforeEnter>
                 {Outlet && React.cloneElement(Outlet, {key: location.pathname})}
             </AnimatePresence>
