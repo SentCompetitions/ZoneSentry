@@ -16,14 +16,14 @@ export function dist(x1:number, x2:number, y1:number, y2: number){
 }
 
 function Realty(props: RealtyProps) {
-    return <div>
+    return <>
         <img src="/defaultPictures/kompom.jpg"/>
         <div>
             <h3>Адрес: {realtyToAddressString(props.r)}</h3>
             <Link className="btn" to={`realties/${props.r.id}`}>Детали</Link>
             {props.r.planUrl && <PlanView planUrl={props.r.planUrl}/>}
         </div>
-    </div>
+    </>
 }
 
 export default Realty;
