@@ -17,9 +17,12 @@ export function dist(x1:number, x2:number, y1:number, y2: number){
 
 function Realty(props: RealtyProps) {
     return <div>
-        Адрес: {realtyToAddressString(props.r)}
-        <Link to={`realties/${props.r.id}`}>Детали</Link>
-        {props.r.planUrl && <PlanView planUrl={props.r.planUrl}/>}
+        <img src="/defaultPictures/kompom.jpg"/>
+        <div>
+            <h3>Адрес: {realtyToAddressString(props.r)}</h3>
+            <Link className="btn" to={`realties/${props.r.id}`}>Детали</Link>
+            {props.r.planUrl && <PlanView planUrl={props.r.planUrl}/>}
+        </div>
     </div>
 }
 

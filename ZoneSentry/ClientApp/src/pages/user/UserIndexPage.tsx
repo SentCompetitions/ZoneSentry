@@ -7,6 +7,7 @@ import {RealtyUserView, UserRealtiesOwnerService, UserRealtiesTenantService} fro
 import {SVGUrl} from "../../components/SVGUrl";
 import Realty from "../../components/users/Realty";
 import useMode from "../../hooks/useMode";
+import "../../styles/user.scss";
 
 function UserIndexPage() {
     const auth = useAuth()
@@ -19,10 +20,17 @@ function UserIndexPage() {
     }, [mode])
     
     return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
-        Привет, {auth.user?.userName}! Сейчас вы {mode == "tenant" ? "Арендатор" : "Инвестор"} <br/>
-        <button onClick={() => setMode(mode == "tenant" ? "owner" : "tenant")}>Переключиться на {mode == "tenant" ? "инвестора" : "арендатор"}</button>
-        
-        {realties?.map(r => <Realty key={r.id} r={r}/>)}
+        <div>
+            <p>Привет, {auth.user?.userName}! Сейчас вы {mode == "tenant" ? "Арендатор" : "Инвестор"}</p>
+            <button className="changeUserTypeBtn" onClick={() => setMode(mode == "tenant" ? "owner" : "tenant")}>Переключиться на {mode == "tenant" ? "инвестора" : "арендатора"}</button>
+        </div>
+
+        <div className="realtiesListBlock">
+            <h2>Ваши объекты</h2>
+            <div className="realtiesList">
+                {realties?.map(r => <Realty key={r.id} r={r}/>)}
+            </div>
+        </div>
     </motion.div>
 }
 

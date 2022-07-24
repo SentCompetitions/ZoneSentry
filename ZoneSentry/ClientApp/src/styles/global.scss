@@ -1,5 +1,9 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
+a{
+    text-decoration: none;
+}
+
 *{
     font-family: 'Inter', sans-serif;
 }
@@ -8,7 +12,7 @@ head, body, button, a{
     font-size:20px;
 }
 
-button{
+button, .btn{
     color: #3F51B5;
     background: #E3F2FD;
     border: none;
@@ -65,7 +69,7 @@ button{
 }
 
 .layout{
-    margin-top: 32px;
+    margin-top: 38px;
 }
 
 .alert{
