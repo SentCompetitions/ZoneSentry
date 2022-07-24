@@ -40,7 +40,7 @@ function LoginForm(props: Props) {
         {errors && <div>{Object.entries(errors.errors).map((([f, e]) => e.map(e => <p>{e}</p>)))}</div>}
         <input onChange={setUsername} value={loginModel.username} placeholder={"Login"} required/>
         <input onChange={setPassword} value={loginModel.password} placeholder={"Password"} type={"password"} required autoComplete={"current-password"}/>
-        <button type={"submit"}>Login</button>
+        <button className="greenBtn" type={"submit"}>Войти</button>
     </form>
 }
 

@@ -25,9 +25,14 @@ function LoginPage(props: Props) {
     };
     
     return <motion.div variants={upVariants} initial={'init'} animate={'show'} exit={'hide'} className={'layout'}>
-        {state == State.Login && <LoginForm/>}
-        {state == State.Register && <RegisterForm/>}
-        <button type={"button"} onClick={changeState}>{state == State.Login ? "Register" : "Login"}</button>
+        <div className="logreg">
+            <div className="logregBlock">
+                <h2>{state == State.Login ? "Вход" : "Регистрация"}</h2>
+                {state == State.Login && <LoginForm/>}
+                {state == State.Register && <RegisterForm/>}
+                <button type={"button"} onClick={changeState}>{state == State.Login ? "Регистрация" : "Вход"}</button>
+            </div>
+        </div>
     </motion.div>
 }
 

@@ -65,7 +65,7 @@ function LoginForm(props: Props) {
             <input onChange={setEmail} value={registerModel.email} placeholder={"Почта"} type={"email"} required/>
             <input onChange={setPassword} value={registerModel.password} placeholder={"Пароль"} type={"password"} required autoComplete={"new-password"}/>
             <input onChange={setRePassword} value={registerModel.rePassword} placeholder={"Повторите пароль"} type={"password"} required autoComplete={"none"}/>
-            <button disabled={loading} type={"submit"}>Зарегистрироваться</button>
+            <button className="greenBtn" disabled={loading} type={"submit"}>Зарегистрироваться</button>
     </form>
 }
 

@@ -1,0 +1,30 @@
+﻿.logreg{
+    display: grid;
+    justify-items: center;
+
+    &>.logregBlock{
+        width: auto;
+        height: auto;
+        background: #E3F3FF;
+
+        padding: 48px;
+        border-radius: 16px;
+
+        & button{
+            width: 100%;
+        }
+
+        &>form{
+
+            display: grid;
+            justify-items: center;
+
+            width: auto;
+            &>*{
+                display: block;
+                margin-bottom: 6px;
+            }
+        }
+    }
+
+}
