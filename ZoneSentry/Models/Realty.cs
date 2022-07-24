@@ -89,6 +89,7 @@ public class RealtyDetails
     public int? SellCost { get; set; }
     public int Area { get; set; }
     public string? PlanUrl { get; set; }
+    public RealtyStatus RealtyStatus { get; set; }
     
     public int HouseId { get; set; }
     
@@ -98,6 +99,7 @@ public class RealtyDetails
     public HouseUserView House { get; set; }
 
     public RentAgreementDTO? CurrentRentAgreement;
+    public List<RealtyServiceOrderDTO> Services { get; set; }
 }
 
 public class RealtyUpdate

@@ -35,6 +35,8 @@ public class UserRealtiesTenantController : ControllerBase
         var realty = await _db.Realties
             .Include("RentAgreements.Tenant")
             .Include(r => r.House.ResidentialComplex.ConstructionCompany)
+            .Include("Services.RealtyService")
+            .Include("Services.Orderer")
             .FirstOrDefaultAsync(r => r.Id == realtyId && r.RentAgreements.FirstOrDefault(a => a.Date < DateTime.Now && a.ExpirationDate > DateTime.Now).Tenant == HttpContext.GetUser());
         if (realty == null) return NotFound();
 

@@ -1,6 +1,7 @@
 import {defineConfig, loadEnv, UserConfigExport} from 'vite'
 import react from '@vitejs/plugin-react'
 import {VitePWA} from "vite-plugin-pwa";
+import {fileURLToPath} from "url";
 
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}) => {
@@ -8,8 +9,13 @@ export default defineConfig(({command, mode}) => {
 
     const config: UserConfigExport = {
         plugins: [react()],
-        build: {
-            sourcemap: true
+        resolve: {
+            alias: {
+                '@': fileURLToPath(new URL('./src', import.meta.url)),
+            },
+        },
+        css: {
+            devSourcemap: true,
         },
         server: {
             port: parseInt(env['PORT']),

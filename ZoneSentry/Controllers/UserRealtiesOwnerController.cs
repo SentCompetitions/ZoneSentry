@@ -35,6 +35,8 @@ public class UserRealtiesOwnerController : ControllerBase
         var realty = await _db.Realties
             .Include("RentAgreements.Tenant")
             .Include(r => r.House.ResidentialComplex.ConstructionCompany)
+            .Include("Services.RealtyService")
+            .Include("Services.Orderer")
             .FirstOrDefaultAsync(r => r.Id == realtyId && r.Owner == HttpContext.GetUser());
         if (realty == null) return NotFound();
 
